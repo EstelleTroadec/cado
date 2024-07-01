@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from './db/client-sequelize.js';
 
-class User extends Model {
+class Event extends Model {
     static init(sequelize) {
         super.init(
             {
@@ -25,6 +25,6 @@ class User extends Model {
     }
 }
 
-Model.init(sequelize);
+Event.init(sequelize);
 
-export default Model;
+export default Event;
