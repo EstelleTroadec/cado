@@ -26,7 +26,7 @@ class User extends Model {
                 },
                 token: {
                     type: DataTypes.STRING,
-                    allowNull: true
+                    allowNull: false
                 }
             },
             {
