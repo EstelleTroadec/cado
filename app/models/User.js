@@ -6,7 +6,7 @@ class User extends Model {
         super.init(
             {
                 // Define the model attributes
-                userName: {
+                name: {
                     type: DataTypes.STRING,
                     allowNull: false
                 },
@@ -16,6 +16,15 @@ class User extends Model {
                     unique: true
                 },
                 password: {
+                    type: DataTypes.STRING,
+                    allowNull: true
+                },
+                is_registered: {
+                    type: DataTypes.BOOLEAN,
+                    allowNull: false,
+                    defaultValue: false
+                },
+                token: {
                     type: DataTypes.STRING,
                     allowNull: true
                 }
