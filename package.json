@@ -4,8 +4,11 @@
   "description": "API CAD'O",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "table": "psql -U cado_dev -d cado -f data/create_tables.sql",
+    "seed": "psql -U cado_dev -d cado -f data/seeding.sql"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {

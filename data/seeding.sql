@@ -1,25 +1,25 @@
 BEGIN;
 
 INSERT INTO
-    "user" ("id", "name", "email", "password", "is_registred", "token", "event_id")
+    "user" ("name", "email", "password", "is_registered", "token")
 VALUES
-    (1, 'Yanis', 'yanis@gnail.com', '123456', 'true', 'null', 1),
-    (2, 'Anais', 'anais@gnail.com', '654321', 'true', 'null', 1),
-    (3, 'Yoann', 'yoann@gnail.com', '456789', 'true', 'null', 1),
-    (4, 'Estelle', 'estelle@gnail.com', '987654', 'true', 'null', 1),
+    ('Yanis', 'yanis@gnail.com', '123456', true, 'lmknfzkffzfz'),
+    ('Anais', 'anais@gnail.com', '654321', true, 'mliuzrhzrzr'),
+    ('Yoann', 'yoann@gnail.com', null, false, 'pzdojozdd'),
+    ('Estelle', 'estelle@gnail.com', null, false, 'ppalslnekee');
 
 INSERT INTO
-    "event" ("id", "name", "date", "user_id")
+    "event" ("name", "date", "organizer_id")
 VALUES
-    (1, 'Anniversaire en groupe', '03/06/2024'),
+    ('Anniversaire en groupe', '2024-06-20', 2);
 
 INSERT INTO
-    "draw" ("id", "giver_id", "receiver_id")
+    "draw" ("giver_id", "receiver_id", "event_id")
 VALUES
-    (1, '1', '3'),
-    (2, '2', '4'),
-    (3, '3', '2'),
-    (4, '4', '1'),
+    (1, 3, 1),
+    (2, 4, 1),
+    (3, 2, 1),
+    (4, 1, 1);
 
 INSERT INTO
     "event_user" ("event_id", "user_id")
