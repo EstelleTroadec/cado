@@ -6,7 +6,7 @@ CREATE TABLE "user" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NULL,
+    "password" TEXT,
     "is_registered" BOOLEAN NOT NULL DEFAULT FALSE,
     "token" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
