@@ -1,0 +1,39 @@
+@endpoint=http://localhost:{{$dotenv PORT}}
+
+
+GET {{endpoint}}/users
+
+###
+POST {{endpoint}}/user
+Content-Type: application/json
+
+{
+  "name": "Johen Doe",
+  "email": "john.doe@test.com",
+  "password": "test"
+}
+
+###
+
+POST {{endpoint}}/users
+Content-Type: application/json
+
+{
+  "name": "Johen Doe",
+  "email": "john.doe@test.com",
+  "password": "test"
+}
+###
+
+PUT {{endpoint}}/users/7
+Content-Type: application/json
+
+{
+  "name": "Johen Doe",
+  "email": "john.doe@test.com",
+  "passwrd": "test"
+}
+
+###
+
+DELETE {{endpoint}}/users/9
