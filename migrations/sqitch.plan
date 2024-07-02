@@ -1,4 +1,6 @@
 %syntax-version=1.0.0
-%project=cado
+%project=CadO
+%uri=https://example.com/projects/cado_new
 
-create-table 2024-07-01T13:37:54Z Perceval <perceval@oclock.io> # creation des tables
+01-create_tables 2024-07-02T08:18:48Z Etudiant O'clock <student@teleporter> # create tables
+02-seeding 2024-07-02T08:28:58Z Yanis <Yanis.lannabi@oclock.school> # seeding script

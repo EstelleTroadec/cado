@@ -40,8 +40,8 @@ CREATE TABLE "event_user" (
     PRIMARY KEY ("event_id", "user_id")
 );
 
-COMMIT;
-<<<<<<< HEAD:migrations/deploy/create-table.sql
+ALTER SEQUENCE "user_id_seq" RESTART WITH 1;
+ALTER SEQUENCE "event_id_seq" RESTART WITH 1;
+ALTER SEQUENCE "draw_id_seq" RESTART WITH 1;
 
-=======
->>>>>>> db68a498ee46e19fe08f659a8036e57e8710da14:data/create_tables.sql
+COMMIT;
