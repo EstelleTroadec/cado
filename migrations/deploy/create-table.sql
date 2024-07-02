@@ -8,7 +8,7 @@ CREATE TABLE "user" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NULL,
+    "password" TEXT,
     "is_registered" BOOLEAN NOT NULL DEFAULT FALSE,
     "token" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -41,4 +41,7 @@ CREATE TABLE "event_user" (
 );
 
 COMMIT;
+<<<<<<< HEAD:migrations/deploy/create-table.sql
 
+=======
+>>>>>>> db68a498ee46e19fe08f659a8036e57e8710da14:data/create_tables.sql
