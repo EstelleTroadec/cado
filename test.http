@@ -4,6 +4,16 @@
 GET {{endpoint}}/users
 
 ###
+POST {{endpoint}}/user
+Content-Type: application/json
+
+{
+  "name": "Johen Doe",
+  "email": "john.doe@test.com",
+  "password": "test"
+}
+
+###
 
 POST {{endpoint}}/users
 Content-Type: application/json
@@ -11,9 +21,8 @@ Content-Type: application/json
 {
   "name": "Johen Doe",
   "email": "john.doe@test.com",
-  "passwrd": "test"
+  "password": "test"
 }
-
 ###
 
 PUT {{endpoint}}/users/7
