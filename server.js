@@ -4,8 +4,9 @@ import router from './app/routers/user.router.js';
 
 const app = express();
 
-app.use(router);
+
 app.use(express.json());
+app.use(router);
 
 
 app.listen(process.env.PORT, () => {
