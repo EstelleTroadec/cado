@@ -3,7 +3,7 @@ import sequelize from './db/client-sequelize.js';
 
 class Event extends Model {
     static init(sequelize) {
-        super.init(
+        Event.init(
             {
                 // Define the model attributes
                 name: {
