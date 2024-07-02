@@ -2,15 +2,16 @@ import User from '../models/User.js';
 
 export default {
     async createUser(req, res) {
-        const { name, email, password } = req.body;
+        const userInput = req.body;
         try {
-            const user = await User.create({ name, email, password });
+            // Déstructurer userInput pour insérer les valeurs dans les colonnes correspondantes
+            const user = await User.create({userInput});
     
             return res.json(user);
-            
+    
         } catch (error) {
             return res.status(500).json({ message: 'Internal server error' });         
-        };
+        }
     },
 
     async getUsers(req, res) {

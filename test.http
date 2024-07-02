@@ -1,0 +1,10 @@
+@endpoint=http://localhost:{{$dotenv PORT}}
+
+POST {{endpoint}}/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@test.com",
+  "password": "test"
+}
