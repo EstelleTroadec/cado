@@ -2,6 +2,8 @@
 
 BEGIN;
 
+DROP TABLE IF EXISTS "user", "event", "draw", "event_user";
+
 CREATE TABLE "user" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL,

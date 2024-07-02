@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "user", "event", "draw", "event_user";
+DROP TABLE "user", "event", "draw", "event_user";
 
 
 COMMIT;
