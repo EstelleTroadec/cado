@@ -1,0 +1,4 @@
+@endpoint=http://localhost:{{$dotenv PORT}}
+
+### Get All Events
+GET {{endpoint}}/events

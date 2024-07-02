@@ -74,4 +74,4 @@ async createEvent (req, res) {
     },
 };
 
-export default eventController;
+export default eventController

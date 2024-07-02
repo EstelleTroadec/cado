@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from './db/client-sequelize.js';
+import sequelize from '../db/client-sequelize.js';
 
 class Event extends Model {
     static init(sequelize) {
-        Event.init(
+        super.init(
             {
                 // Define the model attributes
                 name: {
