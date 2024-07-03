@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from './db/client-sequelize.js';
+import sequelize from '../db/client-sequelize.js';
 
 class Event extends Model {
     static init(sequelize) {
@@ -14,6 +14,15 @@ class Event extends Model {
                     type: DataTypes.DATE,
                     allowNull: false,
                     
+                },
+                organizer_id: {
+                    type: DataTypes.INTEGER,
+                    references: {
+                        model: 'user',
+                        key: 'id'
+                    },
+                    allowNull: false,
+                    onDelete: 'CASCADE'  // Automatically delete associated user when event is deleted
                 }
             },
             {

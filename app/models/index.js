@@ -2,12 +2,12 @@ import Event from "./Event.js";
 import User from "./User.js";
 
 User.hasMany(Event, {
-    foreignKey: 'user_id',
+    foreignKey: 'organizer_id',
     as: 'events'
 });
 
 Event.belongsTo(User, {
-    foreignKey: 'user_id',
+    foreignKey: 'organizer_id',
     as: 'user'
 });
 
