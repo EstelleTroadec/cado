@@ -10,15 +10,14 @@ export default {
         try {
             const userExists = await User.findOne({ where: { email } });
 
-            if(existingUser){
+            if(userExists){
                 return res.status(400).json({ message: 'Email already registered' });
             }
-            const hashedPassword = await bcrypt.hash(password, 10);
-
+            
             const user = await User.create({ 
                 name,
                 email,
-                password: hashedPassword,
+                password,
                 is_registered: true,
                 token: 'your-jwt-token'
             });
@@ -26,7 +25,8 @@ export default {
             return res.status(201).json(user);
             
         } catch (error) {
-            return res.status(500).json({ message: 'Internal server error' });         
+            console.error(error.message);
+            res.status(500).json({ message: 'Internal server error' });         
         }
     },
 
@@ -75,7 +75,7 @@ export default {
 
         await user.destroy();
 
-        return res.status(200).json({ message: `${user.name} successfully deleted` });
+        return res.status(200).json({ message: `User : ${user.id} / ${user.name} successfully deleted` });
         } catch (error) {
         return res.status(500).json({ message: 'Internal server error' });
         };

@@ -1,10 +1,39 @@
 @endpoint=http://localhost:{{$dotenv PORT}}
 
-### Get All Events
+### USERS
+GET {{endpoint}}/users
+
+### CREATE USER
+POST {{endpoint}}/users
+Content-Type: application/json
+
+{
+  "name": "Johen Doe",
+  "email": "john.doe@test.com",
+  "password": "test"
+}
+### UPDATE USER
+
+PUT {{endpoint}}/users/10
+Content-Type: application/json
+
+{
+  "name": "Joheeaen Doe",
+  "email": "john.doe@test.com",
+  "password": "teseaet"
+}
+
+### DELETE USER
+
+DELETE {{endpoint}}/users/11
+
+
+
+### EVENTS
 GET {{endpoint}}/events
 
 
-###
+### CREATE EVENT
 
 POST {{endpoint}}/events
 Content-Type: application/json
@@ -15,7 +44,7 @@ Content-Type: application/json
     "organizer_id": 1
 }
 
-###
+### UPDATE EVENT
 
 PUT {{endpoint}}/events/1
 Content-Type: application/json
@@ -26,6 +55,6 @@ Content-Type: application/json
     "organizer_id": 3
 }
 
-###
+### DELETE EVENT
 
-DELETE {{endpoint}}/events/52
+DELETE {{endpoint}}/events/54
