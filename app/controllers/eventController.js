@@ -2,12 +2,19 @@ import Event from '../models/Event.js';
 
 const eventController = {
 async createEvent (req, res) {
+    const { name, date, organizer_id } = req.body;
     try {
-        const newEvent = await Event.create(req.body);
-        return res.status(201).json(newEvent);
+        const event = await Event.create({
+            name,
+            date,
+            organizer_id
+        });
+        return res.status(201).json(event);
     }
     
-    catch (error) { res.status(500).json({ message: 'Internal server error' });
+    catch (error) { 
+        console.error(error.message)
+        res.status(500).json({ message: 'Internal server error' });
     }
 },
 
@@ -19,7 +26,6 @@ async createEvent (req, res) {
         
         catch (error) { res.status(500).json({ message: 'Internal server error' });
         }
-
     },
 
     async getOneEvent (req, res) {
@@ -37,14 +43,21 @@ async createEvent (req, res) {
 
     },
 
-    async updateEvent (req, res) { 
+    async updateEvent (req, res) {
+        const { id } = req.params;
+        const { name, date, organizer_id } = req.body;
         try {
-            const event = await Event.findByPk(req.params.id);
+            const event = await Event.findByPk(id);
             if (!event) {
                 return res.status(404).json({ message: 'Event not found' });
             }
-            await event.update(req.body);
-            return res.status(200).json({ message: 'Event updated' });
+
+            await event.update({
+                name,
+                date,
+                organizer_id
+            });
+            return res.status(200).json({ message: 'Event updated', event });
 
             // const updatedEvent = await event.update(req.body);
             // return res.status(200).json({ message: 'Event updated', updatedEvent });
@@ -62,10 +75,7 @@ async createEvent (req, res) {
                 return res.status(404).json({ message: 'Event not found' });
             }
             await event.destroy();
-            return res.json({ message: 'Event deleted' });
-
-            // await event.destroy();
-            // return res.status(200).json({ message: 'Event deleted', event });
+            return res.json({ message: ` Event: ${event.id} / ${event.name} deleted` });
         }
 
         catch (error) { res.status(500).json({ message: 'Internal server error' });

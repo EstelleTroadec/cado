@@ -5,13 +5,12 @@ import eventController from '../controllers/eventController.js';
 const router = express.Router();
 
 router.get('/events', eventController.getEvents);
+router.post('/events', eventController.createEvent);
 
-router.get('/:id', eventController.getOneEvent);
+router.get('/events/:id', eventController.getOneEvent);
+router.put('/events/:id', eventController.updateEvent);
+router.delete('/events/:id', eventController.deleteEvent);
 
-router.post('/', eventController.createEvent);
 
-router.put('/:id', eventController.updateEvent);
-
-router.delete('/:id', eventController.deleteEvent);
 
 export default router;
