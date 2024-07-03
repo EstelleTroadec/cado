@@ -1,10 +1,12 @@
 import 'dotenv/config'; 
 import express from "express";
-import event_router from "./app/routers/event.router.js";
 
 const app = express();
 
+
 app.use(express.json());
+app.use(user_router);
+app.use(auth_router);
 
 app.use(event_router);
 

@@ -1,10 +1,10 @@
 import { hash, compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 // Import necessary modules
 
 // Register a new user
-export default authController = {
+export default {
     async register(req, res) {
         try {
             // Extract user data from request body
