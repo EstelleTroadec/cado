@@ -1,5 +1,18 @@
 @endpoint=http://localhost:{{$dotenv PORT}}
 
+
+### REGISTER
+POST {{endpoint}}/register
+Content-Type: application/json
+
+{
+  "name": "Yanis",
+  "email": "test@gneeail.com",
+  "password": "test"
+}
+
+
+
 ### USERS
 GET {{endpoint}}/users
 
@@ -11,8 +24,8 @@ POST {{endpoint}}/users
 Content-Type: application/json
 
 {
-  "name": "Johen Doe",
-  "email": "john.doe@test.com",
+  "name": "Yanis",
+  "email": "yanis@gneeail.com",
   "password": "test"
 }
 ### UPDATE USER
