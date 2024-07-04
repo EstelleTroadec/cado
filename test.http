@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "name": "Yanis",
-  "email": "test@gneeail.com",
+  "email": "tehgs4et@gmail.com",
   "password": "test"
 }
 
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
   "name": "Yanis",
-  "email": "yanis@gneeail.com",
+  "email": "yadnis@gneeail.com",
   "password": "test"
 }
 ### UPDATE USER

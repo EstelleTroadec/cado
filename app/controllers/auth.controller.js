@@ -26,7 +26,7 @@ export default {
             const token = jwt.sign({ email: email }, `${process.env.JWT_SECRET_KEY}`);
 
             // Create a new user
-            const newUser = User.create({ 
+            const user = await User.create({ 
                 name,
                 email,
                 password: hashedPassword,
@@ -34,12 +34,7 @@ export default {
                 token: token
             });
             
-            // Return the token
-            res.status(201).json({ 
-                message: 'User registered',
-                user: newUser,
-                token
-            });
+            return res.status(201).json(user);
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ message: 'Internal server error' });
