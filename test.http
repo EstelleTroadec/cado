@@ -3,6 +3,9 @@
 ### USERS
 GET {{endpoint}}/users
 
+### GET ONE USER
+GET {{endpoint}}/users/1
+
 ### CREATE USER
 POST {{endpoint}}/users
 Content-Type: application/json
