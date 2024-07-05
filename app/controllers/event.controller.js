@@ -59,8 +59,6 @@ async createEvent (req, res) {
             });
             return res.status(200).json({ message: 'Event updated', event });
 
-            // const updatedEvent = await event.update(req.body);
-            // return res.status(200).json({ message: 'Event updated', updatedEvent });
         } 
         
         catch (error) { res.status(500).json({ message: 'Internal server error' });
