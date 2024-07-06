@@ -2,6 +2,7 @@ import { hash, compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import User from '../models/User.js';
+import { sendEmail } from '../utils/sendEmail.js';
 // Import necessary modules
 
 // Register a new user
@@ -33,7 +34,12 @@ export default {
                 is_registered: true,
                 token: token
             });
-            
+
+            // Send an email to the new user
+            const subject = "Welcome to Cad'O";
+            const html = `Hello ${user.name}, welcome to Cad'O!`;
+            sendEmail(user.email, subject, html);
+
             return res.status(201).json(user);
         } catch (error) {
             console.error(error.message);

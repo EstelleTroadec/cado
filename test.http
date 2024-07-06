@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "name": "Yanis",
-  "email": "tehgs4et@gmail.com",
+  "email": "yaniis785@gmail.com",
   "password": "test"
 }
 
@@ -41,7 +41,7 @@ Content-Type: application/json
 
 ### DELETE USER
 
-DELETE {{endpoint}}/users/11
+DELETE {{endpoint}}/users/13
 
 
 
