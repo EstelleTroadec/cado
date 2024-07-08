@@ -2,7 +2,7 @@
 
 
 ### REGISTER
-POST {{endpoint}}/register
+POST {{endpoint}}/auth/register
 Content-Type: application/json
 
 {
@@ -40,7 +40,7 @@ Content-Type: application/json
 
 ### DELETE USER
 
-DELETE {{endpoint}}/users/16
+DELETE {{endpoint}}/users/20
 
 
 
