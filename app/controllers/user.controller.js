@@ -1,27 +1,40 @@
 import User from '../models/User.js';
+import jwt from 'jsonwebtoken';
+import { sendEmail } from '../utils/sendEmail.js';
+
 
 export default {
     async createUser(req, res) {
-        const {name, email, password} = req.body;
-        if (!name || !email || !password) {
+        const {name, email} = req.body;
+        if (!name || !email) {
             return res.status(400).json({ message: 'Please provide all required fields' });
         };
 
         try {
-            const userExists = await User.findOne({ where: { email } });
+            const existingUser = await User.findOne({ where: { email } });
 
-            if(userExists){
+            if(existingUser){
                 return res.status(400).json({ message: 'Email already registered' });
             }
-            
+
+            // Generate a JWT token linked to the email
+            const token = jwt.sign({ email: email }, `${process.env.JWT_SECRET_KEY}`);
+
+            // Use the token to create a new user w/o password
+            // Used to register invited users 
             const user = await User.create({ 
                 name,
                 email,
-                password,
-                is_registered: true,
-                token: 'your-jwt-token'
+                is_registered: false,
+                token: token
             });
-    
+            
+            // Send an email to the new user
+            const subject = "Vous avez été invité à participer sur Cad'O";
+            const html = `Bonjour ${user.name}, tu as été invité à participer sur Cad'O! ! Clique sur le lien pour voir le résultat du tirage au sort`;
+            sendEmail(user.email, subject, html);
+
+
             return res.status(201).json(user);
             
         } catch (error) {
