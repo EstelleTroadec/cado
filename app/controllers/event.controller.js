@@ -28,7 +28,18 @@ async createEvent (req, res) {
                     attributes: ['name', 'email']
                 }
             });
-            return res.status(200).json(allEvents);
+
+            const formattedEvents = allEvents.map(event => {
+                const eventData = event.toJSON();
+                const { participants, createdAt, updatedAt, ...rest } = eventData;
+                return {
+                    ...rest,
+                    participants,
+                    createdAt,
+                    updatedAt
+                }
+            });
+            return res.status(200).json(formattedEvents);
         }
         
         catch (error) {

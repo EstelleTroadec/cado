@@ -45,7 +45,7 @@ DELETE {{endpoint}}/users/20
 
 
 ### EVENTS
-GET {{endpoint}}/events
+GET {{endpoint}}/events/
 
 
 ### CREATE EVENT
