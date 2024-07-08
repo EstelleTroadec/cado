@@ -1,5 +1,7 @@
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
+import { sendEmail } from '../utils/sendEmail.js';
+
 
 export default {
     async createUser(req, res) {
@@ -29,7 +31,7 @@ export default {
             
             // Send an email to the new user
             const subject = "Vous avez été invité à participer sur Cad'O";
-            const html = `Hello ${user.name}, welcome to Cad'O!`;
+            const html = `Bonjour ${user.name}, tu as été invité à participer sur Cad'O! ! Clique sur le lien pour voir le résultat du tirage au sort`;
             sendEmail(user.email, subject, html);
 
 
