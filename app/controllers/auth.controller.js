@@ -51,25 +51,23 @@ export default {
     async login(req, res) {
         try {
             // Extract user data from request body
-            const { username, password } = req.body;
+            const { email, password } = req.body;
 
             // Check if user exists
-            const user = await findOne({ username });
+            const user = await findOne({ email });
             if (!user) {
-                return res.status(404).json({ message: 'User not found' });
+                return res.status(404).json({ message: 'Invalid credentials' });
             }
 
             // Compare passwords
             const isPasswordValid = await compare(password, user.password);
             if (!isPasswordValid) {
-                return res.status(401).json({ message: 'Invalid password' });
+                return res.status(401).json({ message: 'Invalid credentials' });
             }
 
-            // Generate a JWT token
-            const token = sign({ userId: user._id }, 'your-secret-key');
 
             // Return the token
-            res.status(200).json({ token });
+            res.status(200).json({ token: user.token });
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
         }
