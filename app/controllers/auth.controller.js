@@ -69,7 +69,7 @@ export default {
 
 
             // Return the token
-            res.status(200).json({ token: user.token });
+            res.status(200).json({ user });
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ message: 'Internal server error' });
