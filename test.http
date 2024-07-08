@@ -1,8 +1,16 @@
 @endpoint=http://localhost:{{$dotenv PORT}}
 
+###LOGIN
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+  "email": "yaniis.785@gmail.com",
+  "password": "test"
+}
 
 ### REGISTER
-POST {{endpoint}}/auth/register
+POST {{endpoint}}/register
 Content-Type: application/json
 
 {

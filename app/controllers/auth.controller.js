@@ -54,7 +54,9 @@ export default {
             const { email, password } = req.body;
 
             // Check if user exists
-            const user = await findOne({ email });
+            const user = await User.findOne({ where:
+                { email }
+            });
             if (!user) {
                 return res.status(404).json({ message: 'Invalid credentials' });
             }
@@ -69,6 +71,7 @@ export default {
             // Return the token
             res.status(200).json({ token: user.token });
         } catch (error) {
+            console.error(error.message);
             res.status(500).json({ message: 'Internal server error' });
         }
     }
