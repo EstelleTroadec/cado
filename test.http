@@ -1,5 +1,8 @@
 @endpoint=http://localhost:{{$dotenv PORT}}
 
+### DRAW
+GET {{endpoint}}/draw
+
 
 ### REGISTER
 POST {{endpoint}}/auth/register

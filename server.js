@@ -4,6 +4,7 @@ import cors from 'cors';
 import user_router from './app/routers/user.router.js';
 import auth_router from './app/routers/auth.router.js';
 import event_router from './app/routers/event.router.js';
+import draw_router from './app/routers/draw.router.js';
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(user_router);
 app.use(auth_router);
 app.use(event_router);
+app.use(draw_router);
 
 
 app.listen(process.env.PORT, () => {
