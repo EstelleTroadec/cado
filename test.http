@@ -1,5 +1,5 @@
 @endpoint=http://localhost:{{$dotenv PORT}}
-
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inlhbmlpcy43ODVAZ21haWwuY29tIiwiaWF0IjoxNzIwNDQxMTE2fQ.S1bL_8DPbXVrkmRstPiNWpuxoiMo_gJwvaVCcSrXiUY
 
 ###ME
 GET {{endpoint}}/me
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
   "name": "Yanis",
-  "email": "yaniis.785@gmail.com",
+  "email": "yaniis..785@gmail.com",
   "password": "test"
 }
 
