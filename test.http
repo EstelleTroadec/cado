@@ -1,5 +1,8 @@
 @endpoint=http://localhost:{{$dotenv PORT}}
 
+### DRAW
+GET {{endpoint}}/draw
+
 
 ###ME
 GET {{endpoint}}/me
@@ -57,7 +60,7 @@ DELETE {{endpoint}}/users/20
 
 
 ### EVENTS
-GET {{endpoint}}/events
+GET {{endpoint}}/events/
 
 
 ### CREATE EVENT
