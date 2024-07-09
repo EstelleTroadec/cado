@@ -1,5 +1,9 @@
 @endpoint=http://localhost:{{$dotenv PORT}}
 
+
+###ME
+GET {{endpoint}}/me
+
 ###LOGIN
 POST {{endpoint}}/login
 Content-Type: application/json
