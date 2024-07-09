@@ -58,6 +58,15 @@ export default {
             return res.status(500).json({ message: 'Internal server error' });
         };
     },
+    async getMe(req, res) {
+        const user = req.user;
+
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        return res.json(user);
+    },
     async getUsers(req, res) {
         try {
             const users = await User.findAll();
