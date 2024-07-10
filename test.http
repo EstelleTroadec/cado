@@ -4,7 +4,7 @@
 
 
 ### DRAW
-GET {{endpoint}}/draw
+GET {{endpoint}}/draw/73
 
 
 ###ME

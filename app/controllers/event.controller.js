@@ -1,4 +1,5 @@
 import { Event, User } from "../models/index.js";
+import jwt from "jsonwebtoken";
 
 export default {
   async createEvent(req, res) {
@@ -16,31 +17,29 @@ export default {
     }
   },
   async createEventWithParticipants(req, res) {
-    const { title, description, participants } = req.body;
-
+    const { event_name, event_date, participants, organizer_id } = req.body;
+  
     try {
-      const event = await Event.create({ title, description });
-
+      const event = await Event.create({ name: event_name, date: event_date, organizer_id });
+  
       // Add participants to the event
       for (const participant of participants) {
         let user = await User.findOne({ where: { email: participant.email } });
-
-
-        
+  
         if (!user) {
-            const token = jwt.sign({ email: participant.email }, `${process.env.JWT_SECRET_KEY}`);
-            user = await User.create({
+          const token = jwt.sign({ email: participant.email }, `${process.env.JWT_SECRET_KEY}`);
+          user = await User.create({
             name: participant.name,
             email: participant.email,
             is_registered: false,
             token: token
           });
         }
-
+  
         // Link user to the Event
-        await event.addUser(user);
+        await event.addParticipants(user);
       }
-
+  
       res
         .status(201)
         .json({
