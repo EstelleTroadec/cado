@@ -1,4 +1,4 @@
-import Event from '../models/Event.js';
+import { Event, User } from '../models/index.js';
 
 const eventController = {
 async createEvent (req, res) {
@@ -20,11 +20,31 @@ async createEvent (req, res) {
 
     async getEvents (req, res) {
         try {
-            const allEvents = await Event.findAll();
-            return res.status(200).json(allEvents);
+            const allEvents = await Event.findAll({
+                include: {
+                    model: User,
+                    as: 'participants',
+                    through: { attributes: [] },
+                    attributes: ['name', 'email']
+                }
+            });
+
+            const formattedEvents = allEvents.map(event => {
+                const eventData = event.toJSON();
+                const { participants, createdAt, updatedAt, ...rest } = eventData;
+                return {
+                    ...rest,
+                    participants,
+                    createdAt,
+                    updatedAt
+                }
+            });
+            return res.status(200).json(formattedEvents);
         }
         
-        catch (error) { res.status(500).json({ message: 'Internal server error' });
+        catch (error) {
+            console.error(error.message);
+            res.status(500).json({ message: 'Internal server error' });
         }
     },
 
