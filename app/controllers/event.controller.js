@@ -17,10 +17,9 @@ export default {
     }
   },
   async createEventWithParticipants(req, res) {
-    const { event_name, event_date, participants, organizer_id } = req.body;
-  
+    const { name, date, participants, organizer_id} = req.body;
     try {
-      const event = await Event.create({ name: event_name, date: event_date, organizer_id });
+      const event = await Event.create({ name, date, organizer_id });
   
       // Add participants to the event
       for (const participant of participants) {

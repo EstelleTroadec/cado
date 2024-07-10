@@ -35,7 +35,7 @@ Content-Type: application/json
 GET {{endpoint}}/users
 
 ### GET ONE USER
-GET {{endpoint}}/users/1
+GET {{endpoint}}/users/36
 
 ### CREATE USER
 POST {{endpoint}}/users
