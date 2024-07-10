@@ -15,6 +15,43 @@ export default {
       res.status(500).json({ message: "Internal server error" });
     }
   },
+  async createEventWithParticipants(req, res) {
+    const { title, description, participants } = req.body;
+
+    try {
+      const event = await Event.create({ title, description });
+
+      // Add participants to the event
+      for (const participant of participants) {
+        let user = await User.findOne({ where: { email: participant.email } });
+
+
+        
+        if (!user) {
+            const token = jwt.sign({ email: participant.email }, `${process.env.JWT_SECRET_KEY}`);
+            user = await User.create({
+            name: participant.name,
+            email: participant.email,
+            is_registered: false,
+            token: token
+          });
+        }
+
+        // Link user to the Event
+        await event.addUser(user);
+      }
+
+      res
+        .status(201)
+        .json({
+          message: "Event and participants created successfully",
+          event,
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  },
 
   async getEvents(req, res) {
     try {
