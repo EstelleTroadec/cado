@@ -2,9 +2,9 @@ import { Event, User } from '../models/index.js';
 
 
 const drawController = {
-  async getParticipants(req, res) {
+  async getParticipantsFromAnEvent(req, res) {
     try {
-      const allEvents = await Event.findAll({
+      const event = await Event.findByPk(req.params.id,{
         include: {
           model: User,
           as: "participants",
@@ -12,11 +12,11 @@ const drawController = {
           attributes: ["name"],
         },
       });
+      const participants = event.participants.map(participant => participant.name);
+      // const participantsNames = allEvents.flatMap(event => event.participants
+      //   .map(participant => participant.name));
 
-      const participantsNames = allEvents.flatMap(event => event.participants
-        .map(participant => participant.name));
-
-      return res.json(participantsNames);
+      return res.json(participants);
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ message: "Internal server error" });
