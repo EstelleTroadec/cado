@@ -59,23 +59,25 @@ export default {
         return res.status(404).json({ message: "Invalid credentials" });
       }
 
-      // // Compare passwords
-      // const isPasswordValid = await compare(password, user.password);
-      // if (!isPasswordValid) {
-      //   return res.status(401).json({ message: "Invalid credentials" });
-      // }
+      // Compare passwords
+      const isPasswordValid = await compare(password, user.password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
 
-      // // Vérifier le token
-      // jwt.verify(user.token, `${process.env.JWT_SECRET_KEY}`, (err, decoded) => {
-      //   if (err) {
-      //     return res.status(401).json({ message: "Invalid token" });
-      //   }
+      // Vérifier le token
+      jwt.verify(
+        user.token,
+        `${process.env.JWT_SECRET_KEY}`,
+        (err, decoded) => {
+          if (err) {
+            return res.status(401).json({ message: "Invalid token" });
+          }
 
-        // Le token est valide, procéder à l'authentification
-        return res
-          .status(200)
-          .json(user);
-      
+          // Le token est valide, procéder à l'authentification
+          return res.status(200).json(user);
+        }
+      );
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ message: "Internal server error" });
