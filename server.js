@@ -5,8 +5,11 @@ import user_router from './app/routers/user.router.js';
 import auth_router from './app/routers/auth.router.js';
 import event_router from './app/routers/event.router.js';
 import draw_router from './app/routers/draw.router.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
+
+app.use(cookieParser());
 
 app.use(
     cors({

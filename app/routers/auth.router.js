@@ -1,7 +1,7 @@
 import express from "express";
 import controller from "../controllers/auth.controller.js";
 import userController from "../controllers/user.controller.js";
-import authenticate from "../middlewares/auth.middleware.js";
+import authenticate from "../middlewares/generateToken.js";
 const router = express.Router();
 
 router.post("/register", controller.register);
