@@ -75,13 +75,13 @@ export default {
 
       // Set the cookie with the token
       res.cookie("token", token, {
-        httpOnly: true,
-        sameSite: "None",
+        httpOnly: false,
+	        sameSite: "None",
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
-        secure: true, // Use secure cookies in production
+        secure: false, // Use secure cookies in production
       });
 
-      return res.status(200).json({ message: "Login successful", user });
+      return res.status(200).json({ message: "Login successful", token });
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ message: "Internal server error" });

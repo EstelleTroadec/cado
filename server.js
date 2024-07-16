@@ -1,3 +1,5 @@
+import fs from 'fs';
+import https from 'https';
 import 'dotenv/config'; 
 import express from "express";
 import cors from 'cors';
@@ -7,27 +9,25 @@ import event_router from './app/routers/event.router.js';
 import draw_router from './app/routers/draw.router.js';
 import cookieParser from 'cookie-parser';
 
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/cado.zapto.org/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/cado.zapto.org/fullchain.pem', 'utf8');
+
+const credentials = {
+    key: privateKey,
+    cert: certificate
+};
+
+
 const app = express();
 
+app.use(cors({
+    origin: 'http://localhost:5173', // Ajoutez ici l'origine de votre front-end
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Ensure credentials are included in requests
+}));
 
-
-app.use(
-    cors({
-        origin: [
-            'http://localhost',
-            'http://localhost:5173',
-            'http://127.0.0.1:5173',
-            'http://localhost:5174',
-            'http://127.0.0.1:5174',
-            'http://127.0.0.1:5500',
-            'http://localhost:5500',
-            'http://localhost:5173/s-inscrire',
-            'http://127.0.0.1:5173/s-inscrire'
-            
-        ],
-        credentials: true,
-    })
-);
 
 app.use(cookieParser());
 app.use(express.json());
@@ -36,7 +36,21 @@ app.use(auth_router);
 app.use(event_router);
 app.use(draw_router);
 
+const httpsServer = https.createServer(credentials, app);
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server is running on ${process.env.BASE_URL}:${process.env.PORT}`);
+// Écoutez sur le port 443 pour HTTPS
+httpsServer.listen(443, () => {
+    console.log(`HTTPS Server is running on https://165.227.232.51`);
+});
+
+// Optionnel : rediriger le trafic HTTP vers HTTPS
+const http = express();
+
+http.get('*', (req, res) => {
+    res.redirect(`https://${req.headers.host}${req.url}`);
+});
+
+// Écoutez sur le port 80 pour HTTP
+http.listen(80, () => {
+    console.log('HTTP Server is running on port 80 and redirecting to HTTPS');
 });
