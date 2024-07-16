@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import User from "../models/User.js";
 import { sendEmail } from "../utils/sendEmail.js";
-// Import necessary modules
 
 // Register a new user
 export default {
@@ -50,34 +49,39 @@ export default {
   // Login an existing user
   async login(req, res) {
     try {
-      // Extract user data from request body
       const { email, password } = req.body;
 
-      // Check if user exists
+      if (!email || !password) {
+        return res
+          .status(400)
+          .json({ message: "Email and password are required" });
+      }
+
       const user = await User.findOne({ where: { email } });
       if (!user) {
         return res.status(404).json({ message: "Invalid credentials" });
       }
 
-      // Compare passwords
       const isPasswordValid = await compare(password, user.password);
       if (!isPasswordValid) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      // Vérifier le token
-      jwt.verify(
-        user.token,
-        `${process.env.JWT_SECRET_KEY}`,
-        (err, decoded) => {
-          if (err) {
-            return res.status(401).json({ message: "Invalid token" });
-          }
 
-          // Le token est valide, procéder à l'authentification
-          return res.status(200).json(user);
-        }
-      );
+      // If login successful generate a JWT
+      const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {
+        expiresIn: "24h",
+      });
+
+      // Set the cookie with the token
+      res.cookie("token", token, {
+        httpOnly: true,
+        sameSite: "Lax",
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        secure: false, // Use secure cookies in production
+      });
+
+      return res.status(200).json({ message: "Login successful", token });
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ message: "Internal server error" });
