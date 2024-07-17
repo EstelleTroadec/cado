@@ -1,5 +1,6 @@
 import { Event, User } from "../models/index.js";
 import jwt from "jsonwebtoken";
+import { sendEmail } from "../utils/sendEmail.js";
 
 export default {
   async createEvent(req, res) {
@@ -37,6 +38,10 @@ export default {
   
         // Link user to the Event
         await event.addParticipants(user);
+        const signedLink = `http://localhost:5173/event/${user.token}`;
+        const subject = "Vous avez été invité à participer sur Cad'O";
+        const html = `Bonjour ${user.name}, tu as été invité à participer sur Cad'O! ! Clique sur le lien pour voir le résultat du tirage au sort ${signedLink}`;
+        sendEmail(user.email, subject, html);
       }
   
       res
