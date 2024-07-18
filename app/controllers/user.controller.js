@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Event from "../models/Event.js";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../utils/sendEmail.js";
 
@@ -109,17 +110,30 @@ export default {
     }
   },
 
-  async getMe(req, res) {
-    try {
-      const user = await User.findByPk(req.user.id);
+async getMe(req, res) {
+  try {
+    // Récupère l'utilisateur avec ses événements et les participants de chaque événement
+    const user = await User.findByPk(req.user.id, {
+      include: {
+        model: Event,
+        as: 'events',
+        include: {
+          model: User,
+          as: 'participants',
+          through: { attributes: [] }, // Ignorer les attributs de la table de jonction
+          attributes: ['name', 'email'], // Attributs à récupérer pour les participants
+        },
+      },
+    });
 
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      res.status(200).json( user );
-    } catch (error) {
-      console.error(error.message);
-      return res.status(500).json({ message: "Internal server error" });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
-  },
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error:', error.message);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+},
 };
