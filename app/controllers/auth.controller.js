@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import User from "../models/User.js";
 import { sendEmail } from "../utils/sendEmail.js";
+import schema from "../validators/schema.js";
 
 // Register a new user
 export default {
@@ -10,6 +11,8 @@ export default {
     try {
       // Extract user data from request body
       const { name, email, password } = req.body;
+
+      const { error, value } = schema.validate({name, email, password});
 
       // Check if user already exists
       const existingUser = await User.findOne({
