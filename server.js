@@ -6,6 +6,7 @@ import auth_router from './app/routers/auth.router.js';
 import event_router from './app/routers/event.router.js';
 import draw_router from './app/routers/draw.router.js';
 import cookieParser from 'cookie-parser';
+import limiter from './app/middlewares/rateLimit.js';
 
 
 const app = express();
@@ -17,7 +18,7 @@ app.use(cors({
     credentials: true // Ensure credentials are included in requests
 }));
 
-
+app.use(limiter);
 app.use(cookieParser());
 app.use(express.json());
 app.use(user_router);
