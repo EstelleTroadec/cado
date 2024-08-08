@@ -6,18 +6,19 @@ import auth_router from './app/routers/auth.router.js';
 import event_router from './app/routers/event.router.js';
 import draw_router from './app/routers/draw.router.js';
 import cookieParser from 'cookie-parser';
+import limiter from './app/middlewares/rateLimit.js';
 
 
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Ajoutez ici l'origine de votre front-end
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], // Ajoutez ici l'origine de votre front-end
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Ensure credentials are included in requests
 }));
 
-
+app.use(limiter);
 app.use(cookieParser());
 app.use(express.json());
 app.use(user_router);

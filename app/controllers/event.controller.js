@@ -1,5 +1,7 @@
 import { Event, User } from "../models/index.js";
 import jwt from "jsonwebtoken";
+import { sendEmail } from "../utils/sendEmail.js";
+import { findSecretSantaMatch }  from "../utils/draw.js";
 
 export default {
   async createEvent(req, res) {
@@ -26,7 +28,7 @@ export default {
         let user = await User.findOne({ where: { email: participant.email } });
   
         if (!user) {
-          const token = jwt.sign({ email: participant.email }, `${process.env.JWT_SECRET_KEY}`);
+          const token = jwt.sign({ email: participant.email }, `${process.env.JWT_SECRET}`);
           user = await User.create({
             name: participant.name,
             email: participant.email,
@@ -37,6 +39,10 @@ export default {
   
         // Link user to the Event
         await event.addParticipants(user);
+        const signedLink = `http://localhost:5173/view/${user.token}`;
+        const subject = "Vous avez été invité à participer sur Cad'O";
+        const html = `Bonjour ${user.name}, tu as été invité à participer sur Cad'O! ! Clique sur le lien pour voir le résultat du tirage au sort ${signedLink}`;
+        sendEmail(user.email, subject, html);
       }
   
       res
@@ -125,4 +131,24 @@ export default {
       res.status(500).json({ message: "Internal server error" });
     }
   },
+
+  async getResults(req, res){
+    const { token } = req.params;
+
+    try {
+      const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
+      const email = decoded.email;
+  
+      // Assuming you have a method to find the Secret Santa match
+      const match = await findSecretSantaMatch(email);
+  
+      res.json((match));
+    } catch (error) {
+      console.error(error.message)
+      res.status(400).send('Invalid or expired token');
+    }
+  },
 };
+
+// Assuming this function is implemented elsewhere
+
