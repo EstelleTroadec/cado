@@ -60,7 +60,7 @@ export default {
         });
   
         // Send email to giver with the receiver's name
-        const signedLink = `http://localhost:5173/view/${giverUser.token}`;
+        const signedLink = `http://localhost:3000/view/${giverUser.token}`;
         const subject = "Résultat du tirage au sort pour Cad'O";
         const html = `Bonjour ${giverUser.name}, tu dois offrir un cadeau à ${receiverUser.name}. Clique sur le lien pour voir les détails ${signedLink}`;
         sendEmail(giverUser.email, subject, html);
@@ -150,24 +150,4 @@ export default {
       res.status(500).json({ message: "Internal server error" });
     }
   },
-
-  async getResults(req, res){
-    const { token } = req.params;
-
-    try {
-      const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
-      const email = decoded.email;
-  
-      // Assuming you have a method to find the Secret Santa match
-      const match = await findSecretSantaMatch(email);
-  
-      res.json((match));
-    } catch (error) {
-      console.error(error.message)
-      res.status(400).send('Invalid or expired token');
-    }
-  },
 };
-
-// Assuming this function is implemented elsewhere
-
