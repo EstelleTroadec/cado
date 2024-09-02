@@ -1,0 +1,20 @@
+@endpoint=http://localhost:{{$dotenv PORT}}
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzI1MjkzMzg0LCJleHAiOjE3MjUzNzk3ODR9.zi4_mwIfmEHHRteJTEHeRG9HAGql8PXgkMnFsf4DTLM
+
+###ME 
+GET {{endpoint}}/me Authorization: Bearer {{token}}
+
+###LOGIN POST {{endpoint}}/login Content-Type: application/json
+
+{
+    "email": "yaniis.785@gmail.com", "password": "test"
+
+}
+
+### REGISTER POST {{endpoint}}/register Content-Type: application/json Authorization: Bearer {{token}}
+
+{
+    "name": "Tata", "email": "tata@yoyo.fr", "password": "TataYoyo1991&"
+
+}
