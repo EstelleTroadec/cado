@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreateEvent.scss';
-import { useNavigate } from 'react-router-dom';
+
+import baseApi from '../../../Services/baseApi';
+
 function CreateEvent() {
   const [errorMessage, setErrorMessage] = useState('');
   const [name, setName] = useState('');
@@ -12,7 +15,7 @@ function CreateEvent() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('https://cado.zapto.org/me', {
+        const response = await fetch(`${baseApi}/me`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -47,7 +50,7 @@ function CreateEvent() {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const API = 'https://cado.zapto.org/create-event';
+    const API = `${baseApi}/create-event`;
     if (!name || !date || !participants) {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
       return;

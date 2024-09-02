@@ -3,6 +3,7 @@ import './SignUp.scss';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import baseApi from '../../../Services/baseApi';
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -14,10 +15,10 @@ function SignUp() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch('https://cado.zapto.org/register/', {
+    fetch(`${baseApi}/register`, {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
       },
     })
@@ -77,7 +78,9 @@ function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password" className="Input">Mot de passe :</label>
+          <label htmlFor="password" className="Input">
+            Mot de passe :
+          </label>
 
           <input
             className="SignUp__password"
