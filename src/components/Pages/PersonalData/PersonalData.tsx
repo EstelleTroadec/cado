@@ -1,9 +1,9 @@
 import './PersonalData.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import baseApi from '../../../Services/baseApi';
 // import sweetalert for the delete confirmation
 import Swal from 'sweetalert2';
+import baseApi from '../../../Services/baseApi';
 
 interface UserData {
   name: string;

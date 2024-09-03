@@ -11,15 +11,12 @@
     "lint:fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix"
   },
   "dependencies": {
-
     "@types/react-router-dom": "^5.3.3",
-    "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-
+    "react-router-dom": "^6.24.0",
     "semantic-ui-react": "^2.1.5",
-    "react-router-dom": "^6.24.0"
-
+    "sweetalert2": "^11.12.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

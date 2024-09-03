@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './CreateEvent.scss';
 
 import baseApi from '../../../Services/baseApi';
@@ -50,7 +49,6 @@ function CreateEvent() {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const API = `${baseApi}/create-event`;
     if (!name || !date || !participants) {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
       return;
@@ -64,23 +62,24 @@ function CreateEvent() {
       ...participants,
     ];
     try {
-      const eventResponse = await axios.post(
-        API,
-        {
+      const response = await fetch(`${baseApi}/create-event`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
           name,
           date,
           organizer_id: organizerId,
           participants: participantWithOrganizer,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      console.log(eventResponse.data);
-      navigate('/mes-evenements');
-    } catch (error) {
+        }),
+      });
+      const eventResponse = await response.json();
+      console.log(eventResponse);
+      if (response.ok) {
+        navigate('/mes-evenements');
+      } catch (error) {
       setErrorMessage(
         "Nous sommes désolés... Une erreur est survenue lors de la création de l'évènement"
       );
