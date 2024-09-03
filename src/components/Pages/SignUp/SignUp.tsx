@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import baseApi from '../../../Services/baseApi';
 
 function SignUp() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [signUpStatus, setSignUpStatus] = useState('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [signUpStatus, setSignUpStatus] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -23,8 +23,12 @@ function SignUp() {
       },
     })
       .then((response) => {
+        console.log('Response status:', response.status);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          return response.json().then((data) => {
+            console.error('Error data:', data);
+            throw new Error('Network response was not ok');
+          });
         }
         return response.json();
       })
@@ -47,6 +51,7 @@ function SignUp() {
         setPassword('');
       });
   };
+
   return (
     <div className="SignUp__Page">
       <header className="SignUp__title">

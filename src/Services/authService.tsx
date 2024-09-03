@@ -13,8 +13,6 @@ export const login = async (
   email: string,
   password: string
 ): Promise<AuthResponse> => {
-  // http://165.227.232.51/:5000/login/ API
-  // https://cado.zapto.org/login/
   const response = await fetch(`${baseApi}/login/`, {
     method: 'POST',
     headers: {

@@ -1,8 +1,5 @@
-
-// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import homeImage from '../../../../public/FavIcon.png';
-
+import { Helmet } from 'react-helmet-async';
 
 import './HomePage.scss';
 
@@ -11,6 +8,38 @@ function HomePage() {
 
   return (
     <div className="home">
+      <Helmet>
+        <title>Cad'O - Organisez facilement vos secret santas</title>
+        <meta
+          name="description"
+          content="Cad'O - Organisez facilement vos secret santas avec notre plateforme intuitive."
+        />
+        <meta
+          name="keywords"
+          content="évènement, jeux, secret santas, organisation, cadeaux, Cad'O"
+        />
+        <meta
+          property="og:title"
+          content="Cad'O - Organisez facilement vos secret santas"
+        />
+        <meta
+          property="og:description"
+          content="Cad'O - Organisez facilement vos secret santas avec notre plateforme intuitive."
+        />
+        <meta property="og:image" content="/LogoMobile.png" />
+        {/* <meta property="og:url" content="https://notre-futur-site.com" /> */}
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Cad'O - Organisez facilement vos secret santas"
+        />
+        <meta
+          name="twitter:description"
+          content="Cad'O - Organisez facilement vos secret santas avec notre plateforme intuitive."
+        />
+        <meta name="twitter:image" content="/logo192.png" />
+      </Helmet>
       <h1 className="home__title">Bienvenue sur Cad'O</h1>
       <div className="home__container">
         <div className="home__concept-explaination">
@@ -39,7 +68,6 @@ function HomePage() {
           >
             Créer évènement
           </button>
-
         </div>
       </div>
     </div>

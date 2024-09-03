@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
@@ -20,62 +21,64 @@ import Footer from './components/Elements/Footer/Footer';
 
 import './styles/index.scss';
 
-const App = () => {
+function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/se-connecter" element={<Login />} />
-        <Route path="/s-inscrire" element={<SignUp />} />
-        <Route
-          path="/creer-un-evenement"
-          element={
-            <ProtectedRoute>
-              <CreateEvent />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/resultat"
-          element={
-            <ProtectedRoute>
-              <DrawResult />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/details-evenement" element={<EventDetails />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/mentions-legales" element={<LegalNotices />} />
+    <HelmetProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/se-connecter" element={<Login />} />
+          <Route path="/s-inscrire" element={<SignUp />} />
+          <Route
+            path="/creer-un-evenement"
+            element={
+              <ProtectedRoute>
+                <CreateEvent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/resultat"
+            element={
+              <ProtectedRoute>
+                <DrawResult />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/details-evenement" element={<EventDetails />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/mentions-legales" element={<LegalNotices />} />
 
-        <Route
-          path="/mon-compte"
-          element={
-            <ProtectedRoute>
-              <MyAccount />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/mes-evenements"
-          element={
-            <ProtectedRoute>
-              <MyEvents />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/mes-donnees-personnelles"
-          element={
-            <ProtectedRoute>
-              <PersonalData />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-      <Footer />
-    </Router>
+          <Route
+            path="/mon-compte"
+            element={
+              <ProtectedRoute>
+                <MyAccount />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/mes-evenements"
+            element={
+              <ProtectedRoute>
+                <MyEvents user={undefined} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/mes-donnees-personnelles"
+            element={
+              <ProtectedRoute>
+                <PersonalData />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+        <Footer />
+      </Router>
+    </HelmetProvider>
   );
-};
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
