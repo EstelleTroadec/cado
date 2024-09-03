@@ -3,6 +3,7 @@ import './SignUp.scss';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import baseApi from '../../../Services/baseApi';
 
 function SignUp() {
@@ -15,9 +16,17 @@ function SignUp() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Sanitize user inputs
+    const sanitizedData = {
+      name: DOMPurify.sanitize(name),
+      email: DOMPurify.sanitize(email),
+      password: DOMPurify.sanitize(password),
+    };
+
     fetch(`${baseApi}/register`, {
       method: 'POST',
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ sanitizedData }),
       headers: {
         'Content-Type': 'application/json',
       },

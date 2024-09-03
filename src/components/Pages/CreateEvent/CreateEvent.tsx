@@ -1,5 +1,9 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import './CreateEvent.scss';
 
 import baseApi from '../../../Services/baseApi';
@@ -84,6 +88,14 @@ function CreateEvent() {
       ...participants,
     ];
     try {
+      const sanitizedEventName = DOMPurify.sanitize(name);
+      const sanitizedParticipants = participantWithOrganizer.map(
+        (participant) => ({
+          name: DOMPurify.sanitize(participant.name),
+          email: DOMPurify.sanitize(participant.email),
+        })
+      );
+
       const response = await fetch(`${baseApi}/create-event`, {
         method: 'POST',
         headers: {
@@ -91,10 +103,10 @@ function CreateEvent() {
           Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify({
-          name,
+          name: sanitizedEventName,
           date,
           organizer_id: organizerId,
-          participants: participantWithOrganizer,
+          participants: sanitizedParticipants,
         }),
       });
       const eventResponse = await response.json();

@@ -1,6 +1,7 @@
 import './PersonalData.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 // import sweetalert for the delete confirmation
 import Swal from 'sweetalert2';
 import baseApi from '../../../Services/baseApi';
@@ -52,19 +53,25 @@ function PersonalData() {
     const { name, value } = e.target;
     setUserData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: DOMPurify.sanitize(value),
     }));
   };
 
   const handleSave = async () => {
     try {
+      const sanitizedData = {
+        name: DOMPurify.sanitize(userData.name),
+        email: DOMPurify.sanitize(userData.email),
+        password: DOMPurify.sanitize(userData.password),
+      };
+
       const response = await fetch(`${baseApi}/me`, {
         method: 'PATCH',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(sanitizedData),
       });
 
       if (!response.ok) {

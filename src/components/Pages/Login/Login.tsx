@@ -3,6 +3,7 @@ import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 // Importing necessary hooks from react-router-dom and React
 import { useState, useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import {
   login as loginService,
   AuthResponse,
@@ -17,7 +18,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   // Initializing the useNavigate hook for page navigation
   const navigate = useNavigate();
- 
+
   // Using the useEffect hook to validate email and password on each change
   useEffect(() => {
     // Checking the validity of the email
@@ -35,8 +36,16 @@ function Login() {
     if (emailError) {
       return;
     }
+
+    // Sanitize user inputs
+    const sanitizedEmail = DOMPurify.sanitize(email);
+    const sanitizedPassword = DOMPurify.sanitize(password);
+
     try {
-      const data: AuthResponse = await loginService(email, password);
+      const data: AuthResponse = await loginService(
+        sanitizedEmail,
+        sanitizedPassword
+      );
       localStorage.setItem('authData', JSON.stringify(data));
       navigate('/mon-compte');
     } catch (error) {
