@@ -55,7 +55,7 @@ function MyEvent({ user }) {
         {selectedEvent && (
           <div className="MyEvent__Details">
             <h2 className="MyEvent__Title">
-              Nom : {(selectedEvent as any).name.toUpperCase()}
+              {(selectedEvent as any).name.toUpperCase()}
             </h2>
             <h3 className="MyEvent__h3">Date : </h3>
             <p className="MyEvent__Date">{(selectedEvent as any).date}</p>
