@@ -10,26 +10,31 @@
   overflow: hidden;
   background-attachment: fixed;
   padding-bottom: 18.8vh;
-  padding-bottom: 25rem;
 }
 
 .draw-result__title {
-  font-size: 3rem;
-  margin: 4rem auto 1rem auto;
-  width: 50%;
+  font-size: 2rem;
+  margin: 2rem auto 1rem auto;
+  width: 80%;
   text-align: center;
 }
 
 .draw-text {
   margin: 1rem auto;
-  width: 70%;
+  width: 90%;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .draw-roulette {
   position: relative;
+  font-size: 3rem;
+  margin: 2rem auto;
+  width: 20rem;
+  text-align: center;
+  border: #000000 solid 1px;
+  background: v.$color-primary;
 
   // adding some pseudo elements to add some style to the roulette
   &::before,
@@ -58,55 +63,70 @@
     right: -10px;
     border-radius: 0 0.5rem 0.5rem 0;
   }
-
-  font-size: 4rem;
-  margin: 2rem auto;
-  width: 30rem;
-  text-align: center;
-  border: #000000 solid 1px;
-  background: v.$color-primary;
 }
 
 .placeholder {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .result {
-  font-size: 3rem;
+  font-size: 2rem;
   height: 100%;
-  // transition: opacity 2s ease-in-out;
-
   animation: roulette 0.5s linear;
 }
 
 .draw-result__error-message {
-  width: 50%;
-  margin: 27.5rem auto;
+  width: 90%;
+  margin: 10rem auto;
   text-align: center;
   padding: 0.8rem 2rem;
   color: rgb(238, 59, 59);
   font-weight: bold;
   border: 3px solid lightcoral;
-  padding: '10px';
-  border-radius: '5px';
+  border-radius: 5px;
   background-color: #ffeae5;
 }
 
 .draw-result__loading-message {
-  width: 50%;
-  margin: 24.5rem auto;
+  width: 90%;
+  margin: 10rem auto;
   text-align: center;
   padding: 0.8rem 2rem;
   color: black;
   font-weight: bold;
-  padding: '10px';
-  border-radius: '5px';
-  font-size: 5rem;
+  border-radius: 5px;
+  font-size: 2rem;
 }
 
-@media (max-width: 720px) {
+@media (min-width: 721px) {
+  .draw-result__title {
+    font-size: 3rem;
+    width: 50%;
+  }
+
+  .draw-text {
+    width: 70%;
+    font-size: 1.3rem;
+  }
+
   .draw-roulette {
-    width: 25rem;
+    width: 30rem;
+    font-size: 4rem;
+  }
+
+  .placeholder {
+    font-size: 3rem;
+  }
+
+  .result {
+    font-size: 3rem;
+  }
+
+  .draw-result__error-message,
+  .draw-result__loading-message {
+    width: 50%;
+    margin: 27.5rem auto;
+    font-size: 5rem;
   }
 }

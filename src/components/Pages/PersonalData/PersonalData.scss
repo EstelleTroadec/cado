@@ -16,7 +16,8 @@
 .PersonalData__Title {
   text-align: center;
   margin-top: 3rem;
-  font-size: 3rem;
+  font-size: 2.5rem;
+  width: 80%;
 }
 
 .PersonalData__details {
@@ -25,7 +26,7 @@
   padding: 4rem 1rem;
   font-size: 1.5rem;
   background-color: #f0c87e;
-  width: 40%;
+  width: 90%;
   margin: 3.5rem auto 16rem auto;
 }
 
@@ -36,15 +37,13 @@
   margin-bottom: 1rem;
 }
 
-@media (max-width: 720px) {
+// TABLET & DESKTOP
+@media (min-width: 720px) {
   .PersonalData__Title {
-    font-size: 2.5rem;
-    width: 80%;
+    font-size: 3rem;
+    width: auto;
   }
   .PersonalData__details {
-    width: 90%;
-  }
-  .PersonalData__item {
-    text-align: left;
+    width: 40%;
   }
 }

@@ -174,7 +174,7 @@ function PersonalData() {
               <strong>Mot de passe :</strong> {hidePassword()}
             </h2>
             <button type="button" onClick={() => setIsEditing(true)}>
-              Modifier mes infos
+              Modifier mes informations
             </button>
             <button type="button" onClick={handleDeleteAccount}>
               Supprimer mon compte

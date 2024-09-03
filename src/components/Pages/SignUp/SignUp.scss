@@ -3,8 +3,8 @@
 .SignUp {
   text-align: center;
   border: solid black 0.4rem;
-  width: 700px;
-  height: 500px;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,23 +13,26 @@
   border-radius: 0.5rem;
   background-color: #f0c87e;
   margin-bottom: 6.3rem;
+  padding: 1rem;
 }
 
 .SignUp__h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-top: 3rem;
 }
+
 .SignUp__h2 {
   margin: 2.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
+
 .SignUp__confirmation {
   display: flex;
   margin: 2rem auto;
   padding: 0.2rem 1.9rem;
   border-radius: 0.5rem;
   background: #000000;
-  color: #dfdedf; 
+  color: #dfdedf;
   cursor: pointer;
 }
 
@@ -47,10 +50,9 @@
 .SignUp__email,
 .SignUp__password {
   display: block;
-  width: 105%;
+  width: 100%;
   margin: 0 auto 0.3rem auto;
 
-  // Styles communs pour les champs d'entrée
   padding: 0.5rem;
   border-radius: 0.2rem;
   border: 1px solid #ccc;
@@ -80,15 +82,24 @@ input {
   font-size: 1.3rem;
 }
 
-@media (max-width: 720px) {
-  .SignUp__h1 {
-    font-size: 2rem;
-    width: 80%;
-    margin: auto;
-  }
+// TABLET & DESKTOP
+@media (min-width: 720px) {
   .SignUp {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    width: 700px;
+    height: 500px;
+  }
+
+  .SignUp__h1 {
+    font-size: 3rem;
+  }
+
+  .SignUp__h2 {
+    font-size: 2rem;
+  }
+
+  .SignUp__name,
+  .SignUp__email,
+  .SignUp__password {
+    width: 105%;
   }
 }

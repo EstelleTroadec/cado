@@ -1,14 +1,22 @@
-@use '../../../styles/variables' as v;
-
 .home {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('/src/assets/14.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed;
 
   &__title {
     text-align: center;
     font-size: 3rem;
     margin-top: 2rem;
+    width: 80%;
   }
 
   &__container {
@@ -16,8 +24,8 @@
   }
 
   &__concept-explaination {
-    margin-left: 35rem;
-    margin-right: 35rem;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 3.5rem;
     margin-top: 3.5rem;
     border: solid black 0.4rem;
@@ -42,30 +50,19 @@
   margin: 2rem;
 }
 
-.home {
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url('/src/assets/14.jpeg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
-  background-attachment: fixed;
-}
-
 .no-underline {
   text-decoration: none;
 }
 
-// Les tailles standards à prendre en compte sont : De 480 à 720 px pour les téléphones mobiles.
-@media (max-width: 720px) {
+// TABLET & DESKTOP
+@media (min-width: 721px) {
   .home__title {
     font-size: 3rem;
-    width: 80%;
+    margin-top: 2rem;
+    width: auto;
   }
   .home__concept-explaination {
-    margin-left: 0;
-    margin-right: 0;
+    width: 60%;
+    margin: 5rem auto;
   }
 }

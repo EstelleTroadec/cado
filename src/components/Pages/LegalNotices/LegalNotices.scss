@@ -1,7 +1,18 @@
 //@use '../../styles/variables' as v;
 
+.LegalNotices-title,
+.LegalNotices-date,
+.LegalNotices-preface,
+.LegalNotices-editor,
+.LegalNotices-host,
+.LegalNotices-websiteAccess,
+.LegalNotices-CollectData,
+.LegalNotices-h3 {
+  margin-left: 0.5rem;
+  width: 95%;
+}
+
 .LegalNotices-title {
-  margin-left: 10rem;
   padding-top: 3rem;
   font-size: 2.5rem;
 }
@@ -13,32 +24,32 @@
 .LegalNotices-websiteAccess,
 .LegalNotices-CollectData {
   margin-bottom: 4rem;
-  margin-left: 6rem;
-  width: 50%;
 }
 
-.LegalNotices-h3 {
-  margin-left: 7.5rem;
-}
+@media (min-width: 720px) {
+  .LegalNotices-title {
+    margin-left: 10rem;
+  }
 
-.LegalNotices-date {
-  margin-left: 10rem;
-}
-
-.LegalNotices-preface {
-  margin-left: 5rem;
-}
-
-@media (max-width: 720px) {
-  .LegalNotices-title,
   .LegalNotices-date,
   .LegalNotices-preface,
   .LegalNotices-editor,
   .LegalNotices-host,
   .LegalNotices-websiteAccess,
-  .LegalNotices-CollectData,
+  .LegalNotices-CollectData {
+    margin-left: 6rem;
+    width: 50%;
+  }
+
   .LegalNotices-h3 {
-    margin-left: 0.5rem;
-    width: 95%;
+    margin-left: 7.5rem;
+  }
+
+  .LegalNotices-date {
+    margin-left: 10rem;
+  }
+
+  .LegalNotices-preface {
+    margin-left: 5rem;
   }
 }
