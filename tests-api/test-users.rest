@@ -4,7 +4,8 @@
 
 ### GET ALL USERS
 
-GET {{endpoint}}/users Authorization: Bearer {{token}}
+GET {{endpoint}}/users 
+Authorization: Bearer {{token}}
 
 ### GET ONE USER
 

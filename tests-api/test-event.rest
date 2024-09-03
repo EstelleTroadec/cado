@@ -2,7 +2,11 @@
 
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inlhbmlpcy43ODVAZ21haWwuY29tIiwiaWF0IjoxNzIwNDQxMTE2fQ.S1bL_8DPbXVrkmRstPiNWpuxoiMo_gJwvaVCcSrXiUY
 
-### EVENTS GET {{endpoint}}/events/1
+### GET ALL EVENTS 
+GET {{endpoint}}/events
+
+### GET ONE EVENT
+GET {{endpoint}}/events/1
 
 ### CREATE EVENT
 
@@ -24,4 +28,4 @@ PATCH {{endpoint}}/events/1 Content-Type: application/json
 
 ### DELETE EVENT
 
-DELETE {{endpoint}}/events/2
+DELETE {{endpoint}}/events/12
