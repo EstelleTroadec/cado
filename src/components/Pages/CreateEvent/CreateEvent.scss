@@ -1,15 +1,16 @@
 .create-event-h1 {
+  font-size: 3rem;
+  width: 80%;
   margin: 5rem auto;
-  width: 50%;
   text-align: center;
-  font-size: 2rem;
 }
+
 .create-event {
   display: flex;
   flex-direction: column;
   margin: 5rem auto;
   padding: 2rem;
-  width: 50%;
+  width: 90%;
   border: 1px solid black;
   border-radius: 1rem;
   background-image: #ffffff;
@@ -18,15 +19,17 @@
 
   &__element {
     display: flex;
+    flex-direction: column;
     position: relative;
-    flex-direction: row;
     margin: 1rem 1rem;
   }
+
   &__element-title {
     font-weight: bold;
     font-size: 1.2rem;
-    margin-right: 1rem;
+    margin-bottom: 0.5rem;
   }
+
   &__participants {
     display: flex;
     flex-direction: column;
@@ -47,12 +50,17 @@
       color: #000000;
     }
   }
+
   &__participant {
     display: flex;
-    flex-direction: row;
-    margin: 0 0 1rem 0;
-    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 2rem;
+
+    input {
+      margin-bottom: 0.5rem; // Ajustez cette valeur selon vos besoins
+    }
   }
+
   &__validation-button {
     font-size: 1.5rem;
     margin: 1.5rem auto;
@@ -62,23 +70,23 @@
     background: #000000;
     color: #dfdedf;
   }
+
   &__mandatory-fields {
     margin: 3rem 1rem;
     font-size: 0.8rem;
     font-style: italic;
   }
 }
+
 input {
   margin: 0 1rem;
   padding: 0.3rem 1rem;
   width: 15rem;
-  // border-radius: 0.2rem;
 }
+
 #eventDate {
   color: grey;
 }
-
-// if the button is disabled, the background color is grey and the cursor is not allowed
 
 .create-event__validation-button:disabled {
   background-color: #cccccc;
@@ -91,11 +99,9 @@ input {
   color: rgb(238, 59, 59);
   font-weight: bold;
   border: 3px solid lightcoral;
-  padding: '10px';
-  border-radius: '5px';
+  border-radius: 5px;
   background-color: #ffeae5;
 }
-
 
 .create-event-page {
   background-image: linear-gradient(
@@ -109,25 +115,40 @@ input {
   background-attachment: fixed;
 }
 
-@media (max-width: 720px) {
+// TABLET
+@media (min-width: 721px) {
   .create-event-h1 {
-    font-size: 3rem;
-    width: 80%;
+    font-size: 2rem;
+    width: 50%;
   }
+
   .create-event {
-    width: 90%;
-  }
-  .create-event__element {
-    display: flex;
-    flex-direction: column;
-  }
-  .create-event__participant {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 2rem;
-  }
-  .create-event__input-name {
-    margin-bottom: 0.5rem;
+    width: 60%;
   }
 }
 
+// DESKTOP
+@media (min-width: 1300px) {
+  .create-event-h1 {
+    font-size: 2rem;
+    width: 50%;
+  }
+
+  .create-event {
+    width: 60%;
+
+    &__element {
+      flex-direction: row;
+    }
+
+    &__participant {
+      flex-direction: row;
+      margin-bottom: 1rem;
+      justify-content: space-between;
+    }
+
+    &__input-name {
+      margin-bottom: 0;
+    }
+  }
+}

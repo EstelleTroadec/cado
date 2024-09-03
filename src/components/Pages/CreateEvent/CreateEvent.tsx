@@ -4,13 +4,28 @@ import './CreateEvent.scss';
 
 import baseApi from '../../../Services/baseApi';
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+}
+
+interface Participant {
+  name: string;
+  email: string;
+}
+
 function CreateEvent() {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [user, setUser] = useState('');
-  const [participants, setParticipants] = useState([{ name: '', email: '' }]);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [date, setDate] = useState<string>('');
+  const [user, setUser] = useState<User | null>(null);
+  const [participants, setParticipants] = useState<Participant[]>([
+    { name: '', email: '' },
+  ]);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -31,6 +46,7 @@ function CreateEvent() {
     };
     fetchUserData();
   }, []);
+
   const handleAddParticipant = () => {
     const lastParticipant = participants[participants.length - 1];
     if (!lastParticipant.name || !lastParticipant.email) {
@@ -41,16 +57,22 @@ function CreateEvent() {
     }
     setParticipants([...participants, { name: '', email: '' }]);
   };
+
   const handleRemoveParticipant = () => {
     const newParticipant = [...participants];
     newParticipant.pop();
     setParticipants(newParticipant);
     setErrorMessage('');
   };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name || !date || !participants) {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
+      return;
+    }
+    if (!user) {
+      setErrorMessage('Utilisateur non trouvé');
       return;
     }
     const organizerId = user.id;
@@ -79,12 +101,18 @@ function CreateEvent() {
       console.log(eventResponse);
       if (response.ok) {
         navigate('/mes-evenements');
-      } catch (error) {
+      } else {
+        setErrorMessage(
+          "Nous sommes désolés... Une erreur est survenue lors de la création de l'évènement"
+        );
+      }
+    } catch (error) {
       setErrorMessage(
         "Nous sommes désolés... Une erreur est survenue lors de la création de l'évènement"
       );
     }
   };
+
   return (
     <div className="create-event-page">
       <h1 className="create-event-h1">Créer mon évènement</h1>
@@ -186,4 +214,5 @@ function CreateEvent() {
     </div>
   );
 }
+
 export default CreateEvent;

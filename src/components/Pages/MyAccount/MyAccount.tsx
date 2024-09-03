@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import baseApi from '../../../Services/baseApi';
 
-const MyAccount = () => {
+function MyAccount() {
   const [user, setUser] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -64,5 +64,5 @@ const MyAccount = () => {
       </div>
     </div>
   );
-};
+}
 export default MyAccount;

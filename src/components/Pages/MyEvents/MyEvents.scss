@@ -2,8 +2,6 @@
 
 .MyEvents {
   text-align: center;
-
-
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
@@ -13,14 +11,15 @@
   background-size: cover;
   overflow: hidden;
   background-attachment: fixed;
-
 }
 
 .MyEvents__Title {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   margin-bottom: 3rem;
-  font-size: x-large;
+  font-size: 1.5rem;
+  width: 80%;
+  margin: auto;
 }
 
 .MyEvent__Details {
@@ -29,19 +28,21 @@
   padding: 0rem 1rem;
   font-size: 1.5rem;
   background-color: #f0c87e;
-  width: 50%;
-  margin-left: 10rem;
+  width: 95%;
+  margin: auto;
 }
 
 .MyEvents__container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .MyEvents__Button {
   margin-top: 2rem;
-  margin-left: 10rem;
-  font-size: 2rem;
+  font-size: 1rem;
+  height: auto;
+  margin: auto;
+  margin-bottom: 1rem;
 }
 
 .MyEvents__h1 {
@@ -71,38 +72,34 @@
 }
 
 .MyEvent__Event-creation-button {
-  margin-left: 10rem;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin: 3rem auto;
 }
 
-@media (max-width: 720px) {
+// TABLET & DESKTOP
+@media (min-width: 720px) {
   .MyEvents__Title {
-    width: 80%;
-    font-size: 1.5rem;
-    margin: auto;
-    margin-top: 2.5rem;
+    font-size: x-large;
+    margin-top: 3rem;
   }
   .MyEvents__container {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
   .MyEvents__List {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
   .MyEvents__Button {
-    font-size: 1rem;
-    height: auto;
-    margin: auto;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-left: 10rem;
+    margin-top: 2rem;
   }
   .MyEvent__Details {
-    width: 95%;
-    margin: auto;
+    width: 50%;
+    margin-left: 10rem;
   }
   .MyEvent__Event-creation-button {
-    margin: 3rem auto;
+    margin-left: 10rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
   }
 }
