@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -6,7 +7,6 @@ import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
 import CreateEvent from './components/Pages/CreateEvent/CreateEvent';
 import DrawResult from './components/Pages/DrawResult/DrawResult';
-import EventDetails from './components/Pages/EventDetails/EventDetails';
 import FAQ from './components/Pages/FAQ/FAQ';
 import HomePage from './components/Pages/HomePage/HomePage';
 import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
@@ -21,7 +21,7 @@ import Footer from './components/Elements/Footer/Footer';
 
 import './styles/index.scss';
 
-function App() {
+const App: React.FC = () => {
   return (
     <HelmetProvider>
       <Router>
@@ -45,7 +45,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/details-evenement" element={<EventDetails />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/mentions-legales" element={<LegalNotices />} />
@@ -79,6 +78,6 @@ function App() {
       </Router>
     </HelmetProvider>
   );
-}
+};
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);

@@ -1,12 +1,13 @@
+/* eslint-disable react/function-component-definition */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Footer.scss'; // Importez votre fichier SCSS
+import { Link, useLocation } from 'react-router-dom';
+import './Footer.scss';
 
 const Footer: React.FC = () => {
+  const location = useLocation();
   return (
     <footer className="footer">
       <div>
-
         {location.pathname !== '/mentions-legales' && (
           <Link to="/mentions-legales">Mentions légales</Link>
         )}

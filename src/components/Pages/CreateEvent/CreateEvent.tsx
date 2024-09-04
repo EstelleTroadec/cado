@@ -1,5 +1,10 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react/function-component-definition */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import './CreateEvent.scss';
 
 import baseApi from '../../../Services/baseApi';
@@ -16,7 +21,7 @@ interface Participant {
   email: string;
 }
 
-function CreateEvent() {
+const CreateEvent: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [date, setDate] = useState<string>('');
@@ -84,6 +89,14 @@ function CreateEvent() {
       ...participants,
     ];
     try {
+      const sanitizedEventName = DOMPurify.sanitize(name);
+      const sanitizedParticipants = participantWithOrganizer.map(
+        (participant) => ({
+          name: DOMPurify.sanitize(participant.name),
+          email: DOMPurify.sanitize(participant.email),
+        })
+      );
+
       const response = await fetch(`${baseApi}/create-event`, {
         method: 'POST',
         headers: {
@@ -91,10 +104,10 @@ function CreateEvent() {
           Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify({
-          name,
+          name: sanitizedEventName,
           date,
           organizer_id: organizerId,
-          participants: participantWithOrganizer,
+          participants: sanitizedParticipants,
         }),
       });
       const eventResponse = await response.json();
@@ -213,6 +226,6 @@ function CreateEvent() {
       </form>
     </div>
   );
-}
+};
 
 export default CreateEvent;

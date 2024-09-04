@@ -1,6 +1,9 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable no-console */
 import './PersonalData.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 // import sweetalert for the delete confirmation
 import Swal from 'sweetalert2';
 import baseApi from '../../../Services/baseApi';
@@ -11,7 +14,7 @@ interface UserData {
   password: string;
 }
 
-function PersonalData() {
+const PersonalData: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({
     name: '',
     email: '',
@@ -52,19 +55,25 @@ function PersonalData() {
     const { name, value } = e.target;
     setUserData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: DOMPurify.sanitize(value),
     }));
   };
 
   const handleSave = async () => {
     try {
+      const sanitizedData = {
+        name: DOMPurify.sanitize(userData.name),
+        email: DOMPurify.sanitize(userData.email),
+        password: DOMPurify.sanitize(userData.password),
+      };
+
       const response = await fetch(`${baseApi}/me`, {
         method: 'PATCH',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(sanitizedData),
       });
 
       if (!response.ok) {
@@ -158,7 +167,11 @@ function PersonalData() {
             <button type="submit" onClick={handleSave}>
               Enregistrer
             </button>
-            <button onClick={handleCancel} style={{ marginLeft: '10px' }}>
+            <button
+              type="button"
+              onClick={handleCancel}
+              style={{ marginLeft: '10px' }}
+            >
               Annuler
             </button>
           </div>
@@ -184,6 +197,6 @@ function PersonalData() {
       </div>
     </div>
   );
-}
+};
 
 export default PersonalData;

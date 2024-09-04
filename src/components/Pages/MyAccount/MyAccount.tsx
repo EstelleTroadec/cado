@@ -1,13 +1,20 @@
+/* eslint-disable react/function-component-definition */
 import './MyAccount.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import baseApi from '../../../Services/baseApi';
 
-function MyAccount() {
-  const [user, setUser] = useState('');
-  const [error, setError] = useState('');
+interface User {
+  name: string;
+  // Ajoutez d'autres propriétés utilisateur si nécessaire
+}
+
+const MyAccount: React.FC = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -35,13 +42,15 @@ function MyAccount() {
         <h1 className="MyAccount__h1">Mon compte</h1>
       </header>
       <p className="MyAccount-WelcomeMessage">
-        Bienvenue {''}
-        {user?.name?.charAt(0).toUpperCase() +
-          user?.name?.slice(1).toLowerCase()}
-        {''} !
+        Bienvenue{' '}
+        {user?.name
+          ? user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()
+          : ''}{' '}
+        !
       </p>
       <div className="MyAccount__Buttons">
         <button
+          type="button"
           className="MyAccount__personalData"
           onClick={() => navigate('/mes-donnees-personnelles')}
         >
@@ -49,6 +58,7 @@ function MyAccount() {
         </button>
 
         <button
+          type="button"
           className="MyAccount__MyEvents"
           onClick={() => navigate('/mes-evenements')}
         >
@@ -56,6 +66,7 @@ function MyAccount() {
         </button>
 
         <button
+          type="button"
           className="MyAccount__CreateEvent"
           onClick={() => navigate('/creer-un-evenement')}
         >
@@ -64,5 +75,6 @@ function MyAccount() {
       </div>
     </div>
   );
-}
+};
+
 export default MyAccount;

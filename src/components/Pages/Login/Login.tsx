@@ -1,23 +1,26 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable no-console */
 // Importing styles specific to this component
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 // Importing necessary hooks from react-router-dom and React
 import { useState, useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import {
   login as loginService,
   AuthResponse,
 } from '../../../Services/authService';
 
 // Defining the Login component
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   // Initializing states for email, password, and errors
-  const [emailError, setEmailError] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [emailError, setEmailError] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   // Initializing the useNavigate hook for page navigation
   const navigate = useNavigate();
- 
+
   // Using the useEffect hook to validate email and password on each change
   useEffect(() => {
     // Checking the validity of the email
@@ -35,8 +38,16 @@ function Login() {
     if (emailError) {
       return;
     }
+
+    // Sanitize user inputs
+    const sanitizedEmail = DOMPurify.sanitize(email);
+    const sanitizedPassword = DOMPurify.sanitize(password);
+
     try {
-      const data: AuthResponse = await loginService(email, password);
+      const data: AuthResponse = await loginService(
+        sanitizedEmail,
+        sanitizedPassword
+      );
       localStorage.setItem('authData', JSON.stringify(data));
       navigate('/mon-compte');
     } catch (error) {
@@ -83,6 +94,7 @@ function Login() {
           ------ Pas de compte ? Créez-en un ------
         </p>
         <button
+          type="button"
           className="Login__createAccount"
           onClick={() => navigate('/s-inscrire')}
         >
@@ -91,6 +103,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

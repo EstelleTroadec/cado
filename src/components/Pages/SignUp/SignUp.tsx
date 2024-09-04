@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-console */
 import './SignUp.scss';
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import baseApi from '../../../Services/baseApi';
 
 function SignUp() {
@@ -15,9 +16,19 @@ function SignUp() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Sanitize user inputs
+    const sanitizedData = {
+      name: DOMPurify.sanitize(name),
+      email: DOMPurify.sanitize(email),
+      password: DOMPurify.sanitize(password),
+    };
+
+    console.log('Sanitized Data:', sanitizedData); // Log the sanitized data
+
     fetch(`${baseApi}/register`, {
       method: 'POST',
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify(sanitizedData),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -69,7 +80,7 @@ function SignUp() {
             id="name"
             placeholder="Entrez votre nom"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(DOMPurify.sanitize(e.target.value))}
           />
           <label htmlFor="email" className="Input">
             Email :
@@ -80,7 +91,7 @@ function SignUp() {
             id="email"
             placeholder="Entrez votre email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(DOMPurify.sanitize(e.target.value))}
           />
 
           <label htmlFor="password" className="Input">
@@ -93,7 +104,7 @@ function SignUp() {
             id="password"
             placeholder="Entrez votre mot de passe"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(DOMPurify.sanitize(e.target.value))}
           />
           {signUpStatus && <p>{signUpStatus}</p>}
           <button className="SignUp__confirmation" type="submit">

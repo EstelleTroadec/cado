@@ -1,6 +1,6 @@
+/* eslint-disable react/function-component-definition */
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/MainLogo.png';
 import './Header.scss';
 
@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [isAuthenticated, setIsAuthenticated] = useState(
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     !!localStorage.getItem('authData')
   );
 
@@ -30,11 +30,12 @@ const Header: React.FC = () => {
     navigate('/se-connecter');
   };
 
-  let buttons;
+  let buttons: JSX.Element | null;
   if (['/', '/s-inscrire', '/resultat'].includes(location.pathname)) {
     buttons = (
       <div>
         <button
+          type="button"
           onClick={() =>
             navigate(isAuthenticated ? '/mon-compte' : '/se-connecter')
           }
@@ -55,21 +56,29 @@ const Header: React.FC = () => {
   ) {
     buttons = (
       <div className="Buttons-container">
-        <button className="Button" onClick={() => navigate('/mon-compte')}>
+        <button
+          type="button"
+          className="Button"
+          onClick={() => navigate('/mon-compte')}
+        >
           Mon Compte
         </button>
-        <button className="Button" onClick={logout}>
+        <button type="button" className="Button" onClick={logout}>
           Déconnexion
-        </button>{' '}
+        </button>
       </div>
     );
   } else if (location.pathname === '/mon-compte') {
     buttons = (
       <div>
-        <button onClick={logout}>Déconnexion</button>{' '}
+        <button type="button" onClick={logout}>
+          Déconnexion
+        </button>
       </div>
     );
   } else if (location.pathname === '/se-connecter') {
+    buttons = null;
+  } else {
     buttons = null;
   }
 
