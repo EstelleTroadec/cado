@@ -1,10 +1,11 @@
+/* eslint-disable react/function-component-definition */
 /* eslint-disable react/no-unescaped-entities */
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import './HomePage.scss';
 
-function HomePage() {
+const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
@@ -73,6 +74,6 @@ function HomePage() {
       </div>
     </div>
   );
-}
+};
 
 export default HomePage;

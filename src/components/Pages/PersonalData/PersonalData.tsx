@@ -1,3 +1,5 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable no-console */
 import './PersonalData.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +14,7 @@ interface UserData {
   password: string;
 }
 
-function PersonalData() {
+const PersonalData: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({
     name: '',
     email: '',
@@ -165,7 +167,11 @@ function PersonalData() {
             <button type="submit" onClick={handleSave}>
               Enregistrer
             </button>
-            <button onClick={handleCancel} style={{ marginLeft: '10px' }}>
+            <button
+              type="button"
+              onClick={handleCancel}
+              style={{ marginLeft: '10px' }}
+            >
               Annuler
             </button>
           </div>
@@ -191,6 +197,6 @@ function PersonalData() {
       </div>
     </div>
   );
-}
+};
 
 export default PersonalData;

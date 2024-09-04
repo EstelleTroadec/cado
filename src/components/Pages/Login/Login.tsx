@@ -1,3 +1,5 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable no-console */
 // Importing styles specific to this component
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
@@ -10,12 +12,12 @@ import {
 } from '../../../Services/authService';
 
 // Defining the Login component
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   // Initializing states for email, password, and errors
-  const [emailError, setEmailError] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [emailError, setEmailError] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   // Initializing the useNavigate hook for page navigation
   const navigate = useNavigate();
 
@@ -92,6 +94,7 @@ function Login() {
           ------ Pas de compte ? Créez-en un ------
         </p>
         <button
+          type="button"
           className="Login__createAccount"
           onClick={() => navigate('/s-inscrire')}
         >
@@ -100,6 +103,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

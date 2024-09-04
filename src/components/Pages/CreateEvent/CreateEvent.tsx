@@ -1,7 +1,8 @@
+/* eslint-disable react/function-component-definition */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-console */
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import './CreateEvent.scss';
@@ -20,7 +21,7 @@ interface Participant {
   email: string;
 }
 
-function CreateEvent() {
+const CreateEvent: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [date, setDate] = useState<string>('');
@@ -225,6 +226,6 @@ function CreateEvent() {
       </form>
     </div>
   );
-}
+};
 
 export default CreateEvent;

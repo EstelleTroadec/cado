@@ -1,10 +1,16 @@
+/* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
 import './FAQ.scss';
+
+interface QuestionAnswer {
+  question: string;
+  answer: string;
+}
 
 const FAQ: React.FC = () => {
   const [openQuestion, setOpenQuestion] = useState<number | null>(null);
 
-  const questionsAnswers = [
+  const questionsAnswers: QuestionAnswer[] = [
     {
       question: "Qu'est-ce que Secret Santa ?",
       answer:
