@@ -51,12 +51,12 @@ const HomePage: React.FC = () => {
           <p className="home__paragraph">
             Le concept du Secret Santa est un moyen de s’offrir des cadeaux de
             façon anonyme : à l’aide d’un tirage au sort, chaque participant se
-            voit attribuer par tirage au sort une personne à qui il offrira un
-            cadeau. La personne qui reçoit le cadeau ne connaît pas l’identité
-            de celui qui lui offre.
+            voit attribuer une personne à qui il offrira un cadeau. La personne
+            qui reçoit le cadeau ne connaît pas l’identité de celui qui lui
+            offre.
             <br />
             <br />
-            Chez Cad'O, nous avons créé et mis à dispositin un outil qui vous
+            Chez Cad'O, nous avons créé et mis à disposition un outil qui vous
             permettra de faciliter l'organisation de vos Secret Santas !
           </p>
           <h3 className="home__concept-explaination__title2">
