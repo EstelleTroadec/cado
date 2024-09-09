@@ -1,63 +1,39 @@
-/* eslint-disable react/function-component-definition */
-/* eslint-disable no-nested-ternary */
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import baseApi from '../../../Services/baseApi';
 import './DrawResult.scss';
 
 // fictive list of participants to test the feature
 const participants = ['Shakira', 'Beyoncé', 'Babar', 'Neymar', 'Pikachu'];
+
+// preparing the code for when the draw API is ready
+// interface Giver {
+//   giverName: string;
+// }
+//
+// interface Participants [{
+//   participantName: string;
+// }]
+//
+// interface Receiver {
+//   receiverName: string;
+// }
 
 interface Event {
   name: string;
   date: string;
 }
 
-interface DrawPair {
-  giverName: string;
-  receiverName: string;
-  event_id: string;
-}
-
-interface Params {
-  token: string;
-  [key: string]: string | undefined;
-}
-
-const DrawResult: React.FC = () => {
+function DrawResult() {
   // states specific to the drawing
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  // states for draw pair and loading/error handling
-  const [drawPair, setDrawPair] = useState<DrawPair | null>(null);
-  const [eventDetails, setEventDetails] = useState<Event | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const { token } = useParams<Params>();
+  // preparing the code for when the draw API is ready
+  // //states specific to the event
+  // const [event, setEvent] = useState<Event | null>(null);
+  // const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchDrawPair = async () => {
-      try {
-        const response = await fetch(`${baseApi}/view/${token}`);
-        const data: DrawPair = await response.json();
-        setDrawPair(data);
-
-        // Fetch event details using event_id from drawPair
-        const eventResponse = await fetch(`${baseApi}/event/${data.event_id}`);
-        const eventData: Event = await eventResponse.json();
-        setEventDetails(eventData);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchDrawPair();
-  }, [token]);
-
-  const handleDraw = (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleDraw = (e) => {
     e.preventDefault();
 
     // once the button is clicked, we disable it so that the user can not click again
@@ -79,33 +55,47 @@ const DrawResult: React.FC = () => {
     }, 2000);
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // preparing the code for when the draw API is ready
+  // const fetchEvent = async () => {
+  //   try {
+  //     const response = await fetch('https://cado.zapto.org/me', {
+  //       // à vérifier pour fetch les bonnes données des événements
+  //       method: 'GET',
+  //       credentials: 'include',
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
+  //     setEvent(data.events);
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error('Erreur lors du chargement des événements:', error);
+  //   }
+  // };
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  // useEffect(() => {
+  //   fetchEvent();
+  // }, [user]);
 
   return (
     <div className="draw-result-page">
-      {drawPair && (
-        <h1 className="draw-result__title">Bienvenue {drawPair.giverName} !</h1>
-      )}
+      <h1 className="draw-result__title">Bienvenue (prénom) !</h1>
+      {/* for when the API is ready */}
+      {/* <h1 className="draw-result__title">Bienvenue {giver.name} !</h1> */}
 
-      {eventDetails && (
-        <p className="draw-text">
-          Tu es invité(e) à participer à l'évènement {eventDetails.name}, le{' '}
-          {new Date(eventDetails.date).toLocaleDateString()}.
-        </p>
-      )}
+      <p className="draw-text">
+        Tu es invité(e) à participer à l'évènement (Nom de l'évènement), le
+        (JJ/MM/AAAA).
+      </p>
+      {/* for when the API is ready */}
+      {/* <p className="event-details">
+        Tu es invité(e) à participer à l'évènement (Nom de l'évènement), le (JJ/MM/AAAA).
+      </p> */}
 
       <p className="draw-text">
         {' '}
         La personne à qui tu devras offrir un cadeau est...
       </p>
       <button
-        type="button"
         className="draw-button"
         onClick={handleDraw}
         disabled={isButtonDisabled}
@@ -119,14 +109,8 @@ const DrawResult: React.FC = () => {
           <p className="result"> {participants[currentIndex]} </p>
         ) : null}
       </div>
-      {isButtonClicked && drawPair && (
-        <div className="draw-result">
-          <p>Giver: {drawPair.giverName}</p>
-          <p>Receiver: {drawPair.receiverName}</p>
-        </div>
-      )}
     </div>
   );
-};
+}
 
 export default DrawResult;
