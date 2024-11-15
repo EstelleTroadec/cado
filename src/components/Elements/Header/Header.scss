@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  // background-color: transparent;
+
+  .logo {
+    height: 5.5rem;
+  }
+
+  div {
+    button {
+      margin-left: 3rem;
+    }
+  }
+}
+
+.Buttons-container {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 720px) {
+  .Buttons-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .Button {
+    margin: 0.5rem auto;
+  }
+}

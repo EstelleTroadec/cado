@@ -1,0 +1,20 @@
+@use '../../../styles/variables' as v;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: v.$color-bg;
+  div {
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+a {
+  color: v.$color-bg;
+}

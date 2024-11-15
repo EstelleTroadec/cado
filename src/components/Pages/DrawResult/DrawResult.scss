@@ -1,0 +1,132 @@
+@use '../../../styles/variables' as v;
+
+.draw-result-page {
+  display: flex;
+  flex-direction: column;
+  background-image: url('/src/assets/30.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  overflow: hidden;
+  background-attachment: fixed;
+  padding-bottom: 18.8vh;
+}
+
+.draw-result__title {
+  font-size: 2rem;
+  margin: 2rem auto 1rem auto;
+  width: 80%;
+  text-align: center;
+}
+
+.draw-text {
+  margin: 1rem auto;
+  width: 90%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.draw-roulette {
+  position: relative;
+  font-size: 3rem;
+  margin: 2rem auto;
+  width: 20rem;
+  text-align: center;
+  border: #000000 solid 1px;
+  background: v.$color-primary;
+
+  // adding some pseudo elements to add some style to the roulette
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0.8rem;
+    border: #000000 solid 3px;
+    background: repeating-linear-gradient(
+      45deg,
+      v.$color-bg,
+      v.$color-primary 10px,
+      v.$color 10px,
+      v.$color-bg 20px
+    );
+  }
+
+  &::before {
+    left: -10px;
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  &::after {
+    right: -10px;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+}
+
+.placeholder {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.result {
+  font-size: 2rem;
+  height: 100%;
+  animation: roulette 0.5s linear;
+}
+
+.draw-result__error-message {
+  width: 90%;
+  margin: 10rem auto;
+  text-align: center;
+  padding: 0.8rem 2rem;
+  color: rgb(238, 59, 59);
+  font-weight: bold;
+  border: 3px solid lightcoral;
+  border-radius: 5px;
+  background-color: #ffeae5;
+}
+
+.draw-result__loading-message {
+  width: 90%;
+  margin: 10rem auto;
+  text-align: center;
+  padding: 0.8rem 2rem;
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+
+@media (min-width: 721px) {
+  .draw-result__title {
+    font-size: 3rem;
+    width: 50%;
+  }
+
+  .draw-text {
+    width: 70%;
+    font-size: 1.3rem;
+  }
+
+  .draw-roulette {
+    width: 30rem;
+    font-size: 4rem;
+  }
+
+  .placeholder {
+    font-size: 3rem;
+  }
+
+  .result {
+    font-size: 3rem;
+  }
+
+  .draw-result__error-message,
+  .draw-result__loading-message {
+    width: 50%;
+    margin: 27.5rem auto;
+    font-size: 5rem;
+  }
+}
