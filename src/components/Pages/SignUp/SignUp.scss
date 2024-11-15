@@ -1,0 +1,133 @@
+@use '../../../styles/variables' as v;
+
+.SignUp {
+  text-align: center;
+  border: solid black 0.4rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 0.5rem;
+  background-color: #f0c87e;
+  margin-bottom: 6.3rem;
+  padding: 1rem;
+
+  &__Page {
+    text-align: center;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+      url('/src/assets/14.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  }
+
+  &__h1 {
+    font-size: 2rem;
+    margin-top: 3rem;
+  }
+
+  &__h2 {
+    margin: 2.5rem;
+    font-size: 1.5rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+  }
+
+  &__newAccount {
+    margin-bottom: 1.25rem;
+  }
+
+  &__password {
+    margin-bottom: 1.5rem;
+  }
+
+  &__status {
+    color: red;
+    font-weight: bold;
+    padding: 1rem 3rem;
+  }
+
+  &__confirmation {
+    display: flex;
+    margin: 2rem auto;
+    padding: 0.2rem 1.9rem;
+    border-radius: 0.5rem;
+    background: #000000;
+    color: #dfdedf;
+    cursor: pointer;
+  }
+}
+
+.SignUp__name,
+.SignUp__email,
+.SignUp__password {
+  display: block;
+  width: 90%;
+  margin: 0 auto 0.3rem auto;
+
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ccc;
+}
+
+.input-label {
+  font-size: 1.3rem;
+  margin: 0.5rem;
+}
+
+input {
+  background-color: white;
+  width: 80%;
+}
+
+// TABLET
+@media (min-width: 720px) {
+  .SignUp {
+    width: 50%;
+
+    &__h1 {
+      font-size: 3rem;
+    }
+
+    &__h2 {
+      font-size: 2rem;
+    }
+
+    &__form {
+      width: 80%;
+    }
+  }
+
+  .SignUp__name,
+  .SignUp__email,
+  .SignUp__password {
+    width: 105%;
+  }
+}
+
+// DESKTOP
+@media (min-width: 1200px) {
+  .SignUp {
+    width: 40%;
+
+    &__form {
+      width: 70%;
+    }
+  }
+}

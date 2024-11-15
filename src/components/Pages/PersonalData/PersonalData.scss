@@ -1,0 +1,49 @@
+// @use '../../styles/variables' as v;
+
+.PersonalData {
+  text-align: center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('/src/assets/14.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+.PersonalData__Title {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 2.5rem;
+  width: 80%;
+}
+
+.PersonalData__details {
+  border: solid black 0.4rem;
+  border-radius: 0.5rem;
+  padding: 4rem 1rem;
+  font-size: 1.5rem;
+  background-color: #f0c87e;
+  width: 90%;
+  margin: 3.5rem auto 16rem auto;
+}
+
+.PersonalData__item {
+  text-align: left;
+  margin-left: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+// TABLET & DESKTOP
+@media (min-width: 720px) {
+  .PersonalData__Title {
+    font-size: 3rem;
+    width: auto;
+  }
+  .PersonalData__details {
+    width: 40%;
+  }
+}

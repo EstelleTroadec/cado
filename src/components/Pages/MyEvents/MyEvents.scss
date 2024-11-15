@@ -1,0 +1,105 @@
+// @use '../../styles/variables' as v;
+
+.MyEvents {
+  text-align: center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('/src/assets/14.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+.MyEvents__Title {
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  width: 80%;
+  margin: auto;
+}
+
+.MyEvent__Details {
+  border: solid black 0.4rem;
+  border-radius: 0.5rem;
+  padding: 0rem 1rem;
+  font-size: 1.5rem;
+  background-color: #f0c87e;
+  width: 95%;
+  margin: auto;
+}
+
+.MyEvents__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.MyEvents__Button {
+  margin-top: 2rem;
+  font-size: 1rem;
+  height: auto;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.MyEvents__h1 {
+  margin-bottom: 5rem;
+}
+
+.MyEvent__Title {
+  font-size: 2rem;
+  margin-bottom: 1.8rem;
+}
+
+.MyEvent__Date,
+.MyEvent__Participant {
+  text-align: left;
+  margin-left: 4rem;
+}
+
+.MyEvent__h3 {
+  text-align: left;
+  font-weight: bold;
+  margin-left: 2rem;
+  margin-top: 1.5rem;
+}
+
+.MyEvent__Participants-List {
+  margin-bottom: 3rem;
+}
+
+.MyEvent__Event-creation-button {
+  margin: 3rem auto;
+}
+
+// TABLET & DESKTOP
+@media (min-width: 720px) {
+  .MyEvents__Title {
+    font-size: x-large;
+    margin-top: 3rem;
+  }
+  .MyEvents__container {
+    flex-direction: row;
+  }
+  .MyEvents__List {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .MyEvents__Button {
+    font-size: 2rem;
+    margin-left: 10rem;
+    margin-top: 2rem;
+  }
+  .MyEvent__Details {
+    width: 50%;
+    margin-left: 10rem;
+  }
+  .MyEvent__Event-creation-button {
+    margin-left: 10rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+}

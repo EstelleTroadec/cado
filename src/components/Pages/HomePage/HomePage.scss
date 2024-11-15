@@ -1,0 +1,68 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('/src/assets/14.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed;
+
+  &__title {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 2rem;
+    width: 80%;
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  &__concept-explaination {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 3.5rem;
+    margin-top: 3.5rem;
+    border: solid black 0.4rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: #f0c87e;
+  }
+}
+
+.home__concept-explaination__title,
+.home__concept-explaination__title2 {
+  text-align: center;
+  margin: 2rem;
+}
+
+.home__concept-explaination__title2 {
+  margin-top: 5rem;
+}
+
+.home__paragraph {
+  margin: 2rem;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+// TABLET & DESKTOP
+@media (min-width: 721px) {
+  .home__title {
+    font-size: 3rem;
+    margin-top: 2rem;
+    width: auto;
+  }
+  .home__concept-explaination {
+    width: 60%;
+    margin: 5rem auto;
+  }
+}
