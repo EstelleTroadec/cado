@@ -1,0 +1,7 @@
+@endpoint=http://localhost:{{$dotenv PORT}}
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inlhbmlpcy43ODVAZ21haWwuY29tIiwiaWF0IjoxNzIwNDQxMTE2fQ.S1bL_8DPbXVrkmRstPiNWpuxoiMo_gJwvaVCcSrXiUY
+
+### DRAW 
+GET {{endpoint}}/draw/1 
+Authorization: Bearer {{token}}
