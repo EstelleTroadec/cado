@@ -1,0 +1,32 @@
+@endpoint=http://localhost:{{$dotenv PORT}}
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inlhbmlpcy43ODVAZ21haWwuY29tIiwiaWF0IjoxNzIwNDQxMTE2fQ.S1bL_8DPbXVrkmRstPiNWpuxoiMo_gJwvaVCcSrXiUY
+
+### GET ALL USERS
+
+GET {{endpoint}}/users 
+Authorization: Bearer {{token}}
+
+### GET ONE USER
+
+GET {{endpoint}}/users/7
+
+### CREATE USER
+
+POST {{endpoint}}/users Content-Type: application/json
+
+{
+    "name": "Robert", "email": "rob@rob.fr" "password": "test"
+
+} ### UPDATE USER
+
+PATCH {{endpoint}}/users/10 Content-Type: application/json
+
+{
+    "name": "Joheeaen Doe", "email": "john.doe@test.com", "password": "teseaet"
+
+}
+
+### DELETE USER
+
+DELETE {{endpoint}}/users/20
