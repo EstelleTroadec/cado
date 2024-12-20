@@ -26,3 +26,4 @@ Ainsi, l’objectif de cette application est de faciliter l’organisation d’u
 - Typesript
 - Node.js
 - PosgreSQL
+- Sequelize (ORM)
